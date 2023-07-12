@@ -3,6 +3,7 @@ package com.serhii.myproject.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "players")
@@ -17,5 +18,8 @@ public class Player {
 
     @Enumerated(EnumType.STRING)
     private PlayerPosition playerPosition;
+
+    @Column(name = "dateofbirth")
+    private LocalDate dateOfBirth;
 
 }
