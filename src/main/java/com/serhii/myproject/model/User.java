@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 
 @Entity
