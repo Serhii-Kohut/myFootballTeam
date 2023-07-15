@@ -18,6 +18,7 @@ public class Player {
     private long userId;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "position")
     private PlayerPosition playerPosition;
 
     @Column(name = "dateofbirth")
