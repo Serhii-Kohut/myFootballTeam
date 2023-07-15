@@ -1,0 +1,91 @@
+form {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+    width: 50%;
+    height: 70%;
+}
+
+label {
+    align-items: center;
+    display: inline-block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 50%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+#inputButton{
+    background-color: #4bb5fc;
+    color: white;
+    height: 30px;
+    width: fit-content;
+    border: #4bb5fc;
+    display: inline-block;
+}
+
+#clearButton{
+    background-color: #e7e4e4;
+    color: black;
+    height: 30px;
+    border: #e7e4e4;
+    width: fit-content;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+select {
+    width: 50%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none; /* Видаляє підкреслення */
+    color: #2ba6f8; /* Задає синій колір */
+}
+
+th{
+    text-align: left;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+td{
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.immuneText{
+    background-color: #fcfcbe;
+}
+
+.idText{
+    background-color: #e8e8e8;
+}
+
+table {
+    border-spacing: 15px;
+}
+
+#borderList{
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+    width: 50%;
+    height: 70%;
+}
+
+#inputButtonList{
+    background-color: #4bb5fc;
+    color: white;
+    height: 30px;
+    width: fit-content;
+    border: #4bb5fc;
+}
