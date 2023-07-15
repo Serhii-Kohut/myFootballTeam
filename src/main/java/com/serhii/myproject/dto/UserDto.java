@@ -20,4 +20,6 @@ public class UserDto {
 
     private String role;
 
+    public UserDto() {
+    }
 }
