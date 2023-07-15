@@ -1,5 +1,6 @@
 package com.serhii.myproject.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,5 +22,11 @@ public class Player {
 
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
+
+    @NotNull
+    private String country;
+
+    @Column(name = "notes")
+    private String importantNotes;
 
 }
