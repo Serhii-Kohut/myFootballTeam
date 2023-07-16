@@ -1,24 +1,18 @@
 package com.serhii.myproject.model;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+public enum Role {
+    PRESIDENT("President"),
+    SPORT_DIRECTOR("Sport Director"),
+    COACH("Coach");
 
-import javax.persistence.*;
-import java.util.List;
+    private String value;
 
-@Entity
-@Table(name = "roles")
-@Data
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    Role(String value) {
+        this.value = value;
+    }
 
-    @NotBlank(message = "RoleName can not be empty")
-    @Column(nullable = false, unique = true)
-    private String name;
-
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
-
+    public String getValue() {
+        return value;
+    }
 }
+
