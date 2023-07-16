@@ -6,10 +6,7 @@ import com.serhii.myproject.model.User;
 import com.serhii.myproject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,12 @@ public class UserController {
         User user = UserTransformer.convertToEntity(userDto);
         userService.create(user);
         return "redirect:/home";
+    }
+
+    @GetMapping("/{id}/read")
+    public String read(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", UserTransformer.convertToDto(userService.readById(id)));
+        return "user-info";
     }
 
 }

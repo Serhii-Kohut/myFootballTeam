@@ -20,7 +20,7 @@ input[type="password"] {
     font-size: 14px;
 }
 
-#inputButton{
+#inputButton {
     background-color: #4bb5fc;
     color: white;
     height: 30px;
@@ -29,7 +29,7 @@ input[type="password"] {
     display: inline-block;
 }
 
-#clearButton{
+#clearButton {
     background-color: #e7e4e4;
     color: black;
     height: 30px;
@@ -37,7 +37,7 @@ input[type="password"] {
     width: fit-content;
 }
 
-.bold{
+.bold {
     font-weight: bold;
 }
 
@@ -48,25 +48,25 @@ select {
     font-size: 14px;
 }
 
-a{
-    text-decoration: none; /* Видаляє підкреслення */
-    color: #2ba6f8; /* Задає синій колір */
+a {
+    text-decoration: none;
+    color: #2ba6f8;
 }
 
-th{
+th {
     text-align: left;
     border-bottom: 1px solid #c5c5c5;
 }
 
-td{
+td {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.immuneText{
+.immuneText {
     background-color: #fcfcbe;
 }
 
-.idText{
+.idText {
     background-color: #e8e8e8;
 }
 
@@ -74,7 +74,7 @@ table {
     border-spacing: 15px;
 }
 
-#borderList{
+#borderList {
     border: 1px solid white;
     padding: 10px;
     text-align: left;
@@ -82,10 +82,22 @@ table {
     height: 70%;
 }
 
-#inputButtonList{
+#inputButtonList {
     background-color: #4bb5fc;
     color: white;
     height: 30px;
     width: fit-content;
     border: #4bb5fc;
+}
+
+h1 {
+    color: #4bb5fc;
+}
+
+p {
+    color: #2ba6f8;
+}
+
+span {
+    color: #2ba6f8;
 }
