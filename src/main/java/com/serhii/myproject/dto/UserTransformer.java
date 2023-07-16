@@ -1,6 +1,5 @@
 package com.serhii.myproject.dto;
 
-import com.serhii.myproject.model.Role;
 import com.serhii.myproject.model.User;
 
 public class UserTransformer {

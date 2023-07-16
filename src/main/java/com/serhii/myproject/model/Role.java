@@ -5,7 +5,7 @@ public enum Role {
     SPORT_DIRECTOR("Sport Director"),
     COACH("Coach");
 
-    private String value;
+    private final String value;
 
     Role(String value) {
         this.value = value;
