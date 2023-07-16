@@ -19,7 +19,7 @@ public class Player {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "position")
-    private PlayerPosition playerPosition;
+    private PlayerPosition position;
 
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;

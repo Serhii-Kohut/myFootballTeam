@@ -8,7 +8,7 @@ public class PlayerTransformer {
         return new PlayerDto(
                 player.getId(),
                 player.getUserId(),
-                player.getPlayerPosition().toString(),
+                player.getPosition().toString(),
                 player.getDateOfBirth(),
                 player.getCountry(),
                 player.getImportantNotes()
@@ -19,7 +19,7 @@ public class PlayerTransformer {
         Player player = new Player();
         player.setId(playerDto.getId());
         player.setUserId(playerDto.getUserId());
-        player.setPlayerPosition(PlayerPosition.valueOf(playerDto.getPosition()));
+        player.setPosition(PlayerPosition.valueOf(playerDto.getPosition()));
         player.setDateOfBirth(playerDto.getDateOfBirth());
         player.setCountry(playerDto.getCountry());
         player.setImportantNotes(playerDto.getImportantNotes());

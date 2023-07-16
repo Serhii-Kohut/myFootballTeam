@@ -1,11 +1,13 @@
 package com.serhii.myproject.service.impl;
 
 import com.serhii.myproject.model.Player;
+import com.serhii.myproject.model.PlayerPosition;
 import com.serhii.myproject.repository.PlayerRepository;
 import com.serhii.myproject.service.PlayerService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -30,7 +32,7 @@ public class PlayerServiceImpl implements PlayerService {
     public Player update(Player player) {
         Player oldPlayer = readById(player.getId());
         if (oldPlayer != null) {
-            oldPlayer.setPlayerPosition(player.getPlayerPosition());
+            oldPlayer.setPosition(player.getPosition());
             return playerRepository.save(oldPlayer);
         }
         return null;
@@ -42,8 +44,8 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public List<Player> getByPositionId() {
-        List<Player> playersByPosition = (List<Player>) playerRepository.findPlayersByPositionId();
+    public List<Player> getByPosition(PlayerPosition position) {
+        List<Player> playersByPosition = Collections.singletonList(playerRepository.findPlayersByPosition(position));
         return playersByPosition.isEmpty() ? new ArrayList<>() : playersByPosition;
     }
 
