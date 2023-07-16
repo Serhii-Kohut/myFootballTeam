@@ -1,5 +1,5 @@
 <div th:fragment="userList">
-    <h1>List of Users</h1>
+    <h1>Board of members of our club</h1>
     <br>
     <div id="borderList">
         <button id="inputButtonList" class="btn btn-primary" onclick="window.location.href='/users/create'">Create new
@@ -10,7 +10,6 @@
             <thead>
             <tr id="tableFields">
                 <th class="bold">No.</th>
-                <th class="bold">id</th>
                 <th class="bold">Full Name</th>
                 <th class="bold">E-mail</th>
                 <th class="bold">Operations</th>
@@ -19,7 +18,6 @@
             <tbody>
             <tr th:each="user, iterStat : ${users}">
                 <td class="bold" th:text="${iterStat.count}"></td>
-                <td th:text="${user.id}"></td>
                 <td>
                     <a href="/users/{id}/read" th:href="@{'/users/' + ${user.id} + '/read'}">
                         <span th:text="${user.firstName + ' ' + user.lastName}"></span>
