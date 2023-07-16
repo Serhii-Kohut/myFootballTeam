@@ -11,7 +11,8 @@ public class PlayerTransformer {
                 player.getPosition().toString(),
                 player.getDateOfBirth(),
                 player.getCountry(),
-                player.getImportantNotes()
+                player.getImportantNotes(),
+                player.getMarketValue()
         );
     }
 
@@ -23,6 +24,7 @@ public class PlayerTransformer {
         player.setDateOfBirth(playerDto.getDateOfBirth());
         player.setCountry(playerDto.getCountry());
         player.setImportantNotes(playerDto.getImportantNotes());
+        player.setMarketValue(playerDto.getMarketValue());
         return player;
     }
 }

@@ -22,4 +22,6 @@ public class PlayerDto {
 
     private String importantNotes;
 
+    private long marketValue;
+
 }
