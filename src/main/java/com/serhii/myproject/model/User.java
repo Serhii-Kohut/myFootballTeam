@@ -36,8 +36,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "roleid")
-    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR")
     private Role role;
 }

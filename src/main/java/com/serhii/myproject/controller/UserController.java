@@ -2,9 +2,7 @@ package com.serhii.myproject.controller;
 
 import com.serhii.myproject.dto.UserDto;
 import com.serhii.myproject.dto.UserTransformer;
-import com.serhii.myproject.model.Role;
 import com.serhii.myproject.model.User;
-import com.serhii.myproject.service.RoleService;
 import com.serhii.myproject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,24 +17,22 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final RoleService roleService;
 
-    public UserController(UserService userService, RoleService roleService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        List<Role> roles = roleService.getAll();
         model.addAttribute("userDto", new UserDto());
-        model.addAttribute("roles", roles);
         return "create-user";
     }
+
     @PostMapping("/create")
-    public String create(@ModelAttribute("userDto") UserDto userDto){
-        User user = UserTransformer.convertToEntity(userDto, roleService);
+    public String create(@ModelAttribute("userDto") UserDto userDto) {
+        User user = UserTransformer.convertToEntity(userDto);
         userService.create(user);
-        return "redirect:/users-list";
+        return "redirect:/home";
     }
+
 }

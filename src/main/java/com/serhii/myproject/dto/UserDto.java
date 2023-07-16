@@ -1,5 +1,8 @@
 package com.serhii.myproject.dto;
 
+import com.serhii.myproject.model.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +21,9 @@ public class UserDto {
 
     private String password;
 
-    private String role;
+    private Role role;
 
     public UserDto() {
+
     }
 }
