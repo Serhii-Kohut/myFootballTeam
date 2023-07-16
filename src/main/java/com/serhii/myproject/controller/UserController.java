@@ -37,6 +37,6 @@ public class UserController {
     public String create(@ModelAttribute("userDto") UserDto userDto){
         User user = UserTransformer.convertToEntity(userDto, roleService);
         userService.create(user);
-        return "redirect:/users";
+        return "redirect:/users-list";
     }
 }
