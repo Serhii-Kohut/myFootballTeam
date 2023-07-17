@@ -11,18 +11,16 @@
 
   <groupId>com.serhii.myproject</groupId>
   <artifactId>myFootballTeam</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>myFootballTeam Maven Webapp</name>
+
 
   <properties>
     <java.version>11</java.version>
-    <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <spring.version>5.3.9</spring.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
-
-  <version>1.0-SNAPSHOT</version>
-  <name>myFootballTeam Maven Webapp</name>
 
   <dependencies>
 
@@ -136,23 +134,6 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>3.2.0</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.0.0-M1</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>3.0.0-M1</version>
-      </plugin>
-    </plugins>
+     </plugins>
   </build>
 </project>
