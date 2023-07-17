@@ -37,4 +37,16 @@ public class UserController {
         return "user-info";
     }
 
+    @GetMapping("/{id}/update")
+    public String update(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", UserTransformer.convertToDto(userService.readById(id)));
+        return "update-user";
+    }
+
+    @PostMapping("/update")
+    private String update(@ModelAttribute UserDto userDto) {
+        userService.update(UserTransformer.convertToEntity(userDto));
+        return "redirect:/home";
+    }
+
 }
