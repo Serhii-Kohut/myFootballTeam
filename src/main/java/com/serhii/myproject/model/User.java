@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "users")
 @Data
 public class User {
-    private static final String NAME_REGEXP = "[A-Z][a-z]+(-[A-Z][a-z]+){0,1}";
+    private static final String NAME_REGEXP = "[A-Z][a-z]+(-[A-Z][a-z]+)?";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
