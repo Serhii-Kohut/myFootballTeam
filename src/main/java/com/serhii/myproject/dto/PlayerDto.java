@@ -24,6 +24,10 @@ public class PlayerDto {
 
     private long marketValue;
 
+    private String PlayerFirstName;
+
+    private String PlayerLastName;
+
     public PlayerDto() {
     }
 }

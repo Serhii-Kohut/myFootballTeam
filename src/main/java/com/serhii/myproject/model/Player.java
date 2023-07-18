@@ -34,4 +34,11 @@ public class Player {
     @Column(name = "market_value")
     private long marketValue;
 
+    @Column(name = "playerfirstname")
+    private String playerFirstName;
+
+    @Column(name = "playerlastname")
+    private String playerLastName;
+
+
 }
