@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new player to our club</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+<h1>Add new player to our club</h1>
+
+<form th:action="@{/players/create}" method="post">
+
+  <label class="bold" for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName" required>
+  <br>
+
+  <label class="bold" for="lastName">Last Name:</label>
+  <input type="text" id="lastName" name="lastName" required>
+  <br>
+
+  <label class="bold" for="position">Position: </label>
+  <select id="position" name="position" required>
+    <option th:each="position : ${T(com.serhii.myproject.model.PlayerPosition).values()}" th:value="${position.name()}" th:text="${position.getValue()}"></option>
+  </select>
+  <br>
+
+  <label class="bold" for="dateofbirth">Date of birth:</label>
+  <input type="date" id="dateofbirth" name="dateofbirth">
+  <br>
+
+  <label class="bold" for="country">Country:</label>
+  <input type="text" id="country" name="country" required>
+  <br>
+
+  <label class="bold" for="marketvalue">Market value(€):</label>
+  <input type="number" id="marketvalue" name="marketvalue">
+  <br>
+
+  <label class="bold" for="notes">Important notes:</label><br>
+  <textarea id="notes" name="notes" rows="5" required></textarea>
+  <br>
+
+  <input id="inputButton" type="submit" value="Add new player">
+  <button id="clearButton" type="button" onclick="clearTextFields()">Clear</button>
+
+</form>
+</body>
+</html>

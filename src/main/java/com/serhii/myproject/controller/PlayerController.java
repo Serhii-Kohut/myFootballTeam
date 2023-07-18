@@ -4,6 +4,7 @@ import com.serhii.myproject.dto.PlayerDto;
 import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.Player;
 import com.serhii.myproject.service.PlayerService;
+import com.serhii.myproject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/players")
 public class PlayerController {
     private final PlayerService playerService;
+    private final UserService userService;
 
-    public PlayerController(PlayerService playerService) {
+    public PlayerController(PlayerService playerService, UserService userService) {
         this.playerService = playerService;
+        this.userService = userService;
     }
 
     @GetMapping("/create")
