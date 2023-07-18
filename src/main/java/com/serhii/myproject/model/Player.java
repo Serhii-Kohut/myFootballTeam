@@ -30,7 +30,7 @@ public class Player {
     @Column(name = "notes")
     private String importantNotes;
 
-    @Column(nullable = false)
+    @Column(name = "market_value")
     private long marketValue;
 
 }

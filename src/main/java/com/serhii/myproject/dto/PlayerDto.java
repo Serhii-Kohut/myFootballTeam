@@ -24,4 +24,6 @@ public class PlayerDto {
 
     private long marketValue;
 
+    public PlayerDto() {
+    }
 }
