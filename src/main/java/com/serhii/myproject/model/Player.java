@@ -14,8 +14,9 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private long userId;
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "position")
