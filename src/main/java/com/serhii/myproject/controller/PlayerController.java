@@ -7,10 +7,7 @@ import com.serhii.myproject.service.PlayerService;
 import com.serhii.myproject.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/players")
@@ -34,5 +31,10 @@ public class PlayerController {
         Player player = PlayerTransformer.convertToEntity(playerDto);
         playerService.create(player);
         return "redirect:/player-home";
+    }
+    @GetMapping("/{id}/read")
+    public String read(@PathVariable("id") long id, Model model){
+        model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
+        return "player-info";
     }
 }
