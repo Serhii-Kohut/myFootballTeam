@@ -1,0 +1,51 @@
+<div th:fragment="playerlist">
+  <h1>Board of our players</h1>
+  <br>
+  <div id="borderList">
+    <button id="inputButtonList" class="btn btn-primary" onclick="window.location.href='/players/create'">Add new
+      Player
+    </button>
+<br>
+    <table>
+      <thead>
+      <tr id="tableFields">
+        <th class="bold">No.</th>
+        <th class="bold">Full Name</th>
+        <th class="bold">Date of birth</th>
+        <th class="bold">Country</th>
+        <th class="bold">Position</th>
+        <th class="bold">Market value</th>
+        <th class="bold">Notes</th>
+       <th class="bold">Club ID</th> <!-- userId-->
+        <th class="bold">Operations</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr th:each="player, iterStat : ${players}">
+        <td class="bold" th:text="${iterStat.count}"></td>
+        <td>
+          <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
+            <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
+          </a>
+        </td>
+
+        <td th:text="${#dates.format(player.dateOfBirth, 'dd.MM.yyyy')}"></td>
+
+        <td th:text="${player.country}"></td>
+        <td th:text="${player.position}"></td>
+        <td th:text="${player.marketValue}"></td>
+        <td th:text="${player.importantNotes}"></td>
+        <td th:text="${player.user.id}"></td>
+
+        <td>
+          <a href="/players/{id}/update" th:href="@{'/players/' + ${players.id} + '/update'}">Update</a>
+          <a href="/players/{id}/delete" th:href="@{'/players/' + ${players.id} + '/delete'}">Delete</a>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
