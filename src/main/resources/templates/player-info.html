@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+  <title th:text="'Details of ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Details of Player</title>
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+<br>
+<h1 th:text="'Details of ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Member Info</h1>
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td th:text="${player.id}"></td>
+  </tr>
+  <tr>
+    <td>Full name</td>
+    <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
+  </tr>
+  <tr>
+    <td>Position</td>
+    <td th:text="${player.position}"></td>
+  </tr>
+  <tr>
+    <td>Date of birth</td>
+    <td th:text="${player.dateOfBirth}"></td>
+  </tr>
+  <tr>
+    <td>Country</td>
+    <td th:text="${player.country}"></td>
+  </tr>
+  <tr>
+    <td>Market Value</td>
+    <td th:text="${player.marketValue + ' €'}"></td>
+  </tr>
+  <tr>
+    <td>Notes</td>
+    <td th:text="${player.importantNotes}"></td>
+  </tr>
+</table>
+</body>
+</html>
