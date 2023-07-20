@@ -12,8 +12,6 @@ import java.time.LocalDate;
 public class PlayerDto {
     private long id;
 
-    private long userId;
-
     private String position;
 
     private LocalDate dateOfBirth;

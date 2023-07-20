@@ -14,10 +14,6 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "position")
     private PlayerPosition position;
@@ -39,6 +35,5 @@ public class Player {
 
     @Column(name = "playerlastname")
     private String playerLastName;
-
 
 }

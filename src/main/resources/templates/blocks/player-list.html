@@ -16,7 +16,6 @@
         <th class="bold">Position</th>
         <th class="bold">Market value</th>
         <th class="bold">Notes</th>
-       <th class="bold">Club ID</th> <!-- userId-->
         <th class="bold">Operations</th>
       </tr>
       </thead>
@@ -37,7 +36,6 @@
         <td th:text="${player.position}"></td>
         <td th:text="${player.marketValue}"></td>
         <td th:text="${player.importantNotes}"></td>
-        <td th:text="${player.user.id}"></td>
 
         <td>
           <a href="/players/{id}/update" th:href="@{'/players/' + ${players.id} + '/update'}">Update</a>
