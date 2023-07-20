@@ -38,8 +38,8 @@
         <td th:text="${player.importantNotes}"></td>
 
         <td>
-          <a href="/players/{id}/update" th:href="@{'/players/' + ${players.id} + '/update'}">Update</a>
-          <a href="/players/{id}/delete" th:href="@{'/players/' + ${players.id} + '/delete'}">Delete</a>
+          <a href="/players/{id}/update" th:href="@{'/players/' + ${player.id} + '/update'}">Update</a>
+          <a href="/players/{id}/delete" th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
         </td>
 
       </tr>
