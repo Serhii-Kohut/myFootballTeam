@@ -18,7 +18,7 @@ public class Player {
     @Column(name = "position")
     private PlayerPosition position;
 
-    @Column(name = "dateofbirth")
+    @Column(name = "dateofbirth", nullable = false)
     private LocalDate dateOfBirth;
 
     @NotNull
@@ -27,8 +27,8 @@ public class Player {
     @Column(name = "notes")
     private String importantNotes;
 
-    @Column(name = "market_value")
-    private long marketValue;
+    @Column(name = "market_value", nullable = false)
+    private Long marketValue;
 
     @Column(name = "playerfirstname")
     private String playerFirstName;

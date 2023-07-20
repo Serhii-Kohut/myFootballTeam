@@ -3,6 +3,7 @@ package com.serhii.myproject.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -14,13 +15,14 @@ public class PlayerDto {
 
     private String position;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     private String country;
 
     private String importantNotes;
 
-    private long marketValue;
+    private Long marketValue;
 
     private String playerFirstName;
 

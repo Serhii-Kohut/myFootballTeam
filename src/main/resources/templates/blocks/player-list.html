@@ -30,7 +30,8 @@
           </a>
         </td>
 
-        <td th:text="${#dates.format(player.dateOfBirth, 'dd.MM.yyyy')}"></td>
+        <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
+
 
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
