@@ -29,11 +29,11 @@
 <br>
 
 <label class="bold" for="dateOfBirth">Date of birth:</label>
-<input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${player.dateOfBirth}">
+<input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}">
 
 <br>
 
-<label class="bold" for="country">Last Name:</label>
+<label class="bold" for="country">Country:</label>
 <input type="text" id="country" name="country" th:value="${player.country}" required>
 <br>
 
