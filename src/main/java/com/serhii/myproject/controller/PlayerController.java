@@ -36,7 +36,7 @@ public class PlayerController {
         return "player-info";
     }
 
-    @GetMapping("/{id}update")
+    @GetMapping("/{id}/update")
     public String showUpdateFormPlayer(@PathVariable("id") long id, Model model) {
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "update-player";
