@@ -29,9 +29,21 @@ public class PlayerController {
         playerService.create(player);
         return "redirect:/player-home";
     }
+
     @GetMapping("/{id}/read")
-    public String read(@PathVariable("id") long id, Model model){
+    public String read(@PathVariable("id") long id, Model model) {
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "player-info";
+    }
+
+    @GetMapping("/{id}update")
+    public String showUpdateFormPlayer(@PathVariable("id") long id, Model model) {
+        model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
+        return "update-player";
+    }
+    @PostMapping("/update")
+    public String updatePlayer(@ModelAttribute PlayerDto playerDto){
+        playerService.update(PlayerTransformer.convertToEntity(playerDto));
+        return "redirect:/player-home";
     }
 }

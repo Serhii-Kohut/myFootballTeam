@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create existing member of our club</title>
+    <title th:text="'Update info of ' + ${user.firstName} + ' ' + ${user.lastName}">Update existing member of our club</title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <div th:insert="blocks/header :: header"></div>
 <br>
-<h1>Update Existing User</h1>
+<h1 th:text="'Update info of ' + ${user.firstName} + ' ' + ${user.lastName}">Update Existing User</h1>
 <form th:action="@{/users/update}" method="post">
     <label class="bold" for="id">ID:</label>
     <input class="idText" type="text" id="id" name="id" th:value="${user.id}" readonly>
