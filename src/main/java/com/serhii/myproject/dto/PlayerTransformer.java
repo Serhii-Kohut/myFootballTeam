@@ -2,8 +2,6 @@ package com.serhii.myproject.dto;
 
 import com.serhii.myproject.model.Player;
 import com.serhii.myproject.model.PlayerPosition;
-import com.serhii.myproject.model.User;
-import com.serhii.myproject.service.UserService;
 
 public class PlayerTransformer {
     public static PlayerDto convertToDto(Player player) {
