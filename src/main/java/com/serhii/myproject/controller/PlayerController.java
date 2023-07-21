@@ -41,9 +41,16 @@ public class PlayerController {
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "update-player";
     }
+
     @PostMapping("/update")
-    public String updatePlayer(@ModelAttribute PlayerDto playerDto){
+    public String updatePlayer(@ModelAttribute PlayerDto playerDto) {
         playerService.update(PlayerTransformer.convertToEntity(playerDto));
+        return "redirect:/player-home";
+    }
+
+    @GetMapping("/{id}/delete")
+    private String delete(@PathVariable("id") long id) {
+        playerService.delete(id);
         return "redirect:/player-home";
     }
 }
