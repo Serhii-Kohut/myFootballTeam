@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
   <title>Details of Member</title>
+  <title th:text="'Details of ' + ${user.firstName} + ' ' + ${user.lastName}">Details of Member</title>
 </head>
 <body>
 <div th:insert="blocks/header :: header"></div>
 <br>
-<h1>Member Info</h1>
+<h1 th:text="'Details of ' + ${user.firstName} + ' ' + ${user.lastName}">Member Info</h1>
 <table>
   <tr>
     <th><b>Field</b></th>
@@ -30,6 +31,17 @@
     <td><b>Role</b></td>
     <td th:text="${user.role}"></td>
   </tr>
+
+  <td>
+    <button class="btn btn-primary" th:onclick="|window.location.href='/users/${user.id}/update'|">
+      <span th:text="'Update ' + ${user.firstName} + ' ' + ${user.lastName}"></span>
+    </button>
+  </td>
+  <td>
+    <button class="btn btn-danger" th:onclick="|window.location.href='/users/${user.id}/delete'|">
+      <span th:text="'Delete ' + ${user.firstName} + ' ' + ${user.lastName}"></span>
+    </button>
+  </td>
 </table>
 </body>
 </html>

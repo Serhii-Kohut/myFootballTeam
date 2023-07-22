@@ -6,8 +6,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-public class MyTemApp extends SpringBootServletInitializer {
+public class MyTeamApp extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(MyTemApp.class, args);
+        SpringApplication.run(MyTeamApp.class, args);
     }
 }

@@ -87,11 +87,12 @@ table {
     text-align: left;
     width: 50%;
     height: 70%;
+    margin: 0 auto; /* центрування по горизонталі */
 }
 
 #inputButtonList {
     background-color: #FB090B;
-    color: white;
+    color: black;
     height: 30px;
     width: fit-content;
     border: #4bb5fc;
@@ -101,6 +102,7 @@ table {
 h1 {
     color: #FB090B;
     font-family: Arial, sans-serif;
+    text-align: center; /* Центрування заголовка по горизонталі */
 }
 
 p {
@@ -116,4 +118,9 @@ span {
 .separator {
     margin: 0 5px; /* відступи по боках від роздільника */
     color: #666;   /* Колір тексту роздільника */
+}
+
+
+table {
+    margin-top: 20px;
 }
