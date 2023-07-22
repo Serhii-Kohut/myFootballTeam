@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,8 @@ public class PlayerHomeController {
         List<PlayerDto> playerDtos = playerService.getAllPlayers().stream()
                 .map(PlayerTransformer::convertToDto)
                 .collect(Collectors.toList());
+
+        playerDtos.sort(Comparator.comparingLong(PlayerDto::getId));
 
         model.addAttribute("players", playerDtos);
         return "player-home";
