@@ -28,7 +28,7 @@ public class UserController {
     public String create(@ModelAttribute("userDto") UserDto userDto) {
         User user = UserTransformer.convertToEntity(userDto);
         userService.create(user);
-        return "redirect:/home";
+        return "redirect:/managers-home";
     }
 
     @GetMapping("/{id}/read")
@@ -46,13 +46,13 @@ public class UserController {
     @PostMapping("/update")
     private String update(@ModelAttribute UserDto userDto) {
         userService.update(UserTransformer.convertToEntity(userDto));
-        return "redirect:/home";
+        return "redirect:/managers-home";
     }
 
     @GetMapping("/{id}/delete")
     private String delete(@PathVariable("id") long id) {
         userService.delete(id);
-        return "redirect:/home";
+        return "redirect:/managers-home";
     }
 
 }

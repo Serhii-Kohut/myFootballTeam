@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+  <meta charset="UTF-8">
+  <title>Home</title>
 </head>
 <body>
-<div th:insert="blocks/header :: header"></div>
-<br>
-<div th:insert="blocks/users-list :: userList"></div>
-
+<h1>Welcome to the Homepage of OUR club!</h1>
+<div>
+  <a href="http://localhost:9091/managers-home">
+    <img src="/path/to/managers-image.jpg" alt="Managers Home">
+  </a>
+</div>
+<div>
+  <a href="http://localhost:9091/player-home">
+    <img src="/path/to/player-image.jpg" alt="Player Home">
+  </a>
+</div>
 </body>
 </html>
