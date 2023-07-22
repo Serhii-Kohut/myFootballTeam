@@ -43,6 +43,24 @@
     <td>Notes</td>
     <td th:text="${player.importantNotes}"></td>
   </tr>
+  <td>
+<!--
+    &lt;!&ndash;<a href="/players/{id}/update" th:href="@{'/players/' + ${player.id} + '/update'}">Update</a>&ndash;&gt;
+    <a th:href="@{'/players/' + ${player.id} + '/update'}" th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update</a>
+    <span class="separator">|</span>
+    &lt;!&ndash;<a href="/players/{id}/delete" th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>&ndash;&gt;
+    <a th:href="@{'/players/' + ${player.id} + '/delete'}" th:text="'Delete ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Delete</a>
+-->
+    <button class="btn btn-primary" th:onclick="|window.location.href='/players/${player.id}/update'|">
+      <span th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}"></span>
+    </button>
+  </td>
+  <td>
+     <button class="btn btn-danger" th:onclick="|window.location.href='/players/${player.id}/delete'|">
+      <span th:text="'Delete ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}"></span>
+    </button>
+  </td>
+
 </table>
 </body>
 </html>
