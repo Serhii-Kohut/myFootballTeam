@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Update info of ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update existing player of our club</title>
+    <title th:text="'Update info of ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update existing
+        player of our club</title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
@@ -10,43 +11,49 @@
 <br>
 <h1 th:text="'Update info of ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update Existing Player</h1>
 <form th:action="@{/players/update}" method="post">
-<label class="bold" for="id">ID:</label>
-<input class="idText" type="text" id="id" name="id" th:value="${player.id}" readonly>
-<br>
+    <label class="bold" for="id">ID:</label>
+    <input class="idText" type="text" id="id" name="id" th:value="${player.id}" readonly>
+    <br>
 
-<label class="bold" for="playerFirstName">First Name:</label>
-<input type="text" id="playerFirstName" name="playerFirstName" th:value="${player.playerFirstName}" required>
-<br>
+    <label class="bold" for="playerFirstName">First Name:</label>
+    <input type="text" id="playerFirstName" name="playerFirstName" th:value="${player.playerFirstName}" required>
+    <br>
 
-<label class="bold" for="playerLastName">Last Name:</label>
-<input type="text" id="playerLastName" name="playerLastName" th:value="${player.playerLastName}" required>
-<br>
+    <label class="bold" for="playerLastName">Last Name:</label>
+    <input type="text" id="playerLastName" name="playerLastName" th:value="${player.playerLastName}" required>
+    <br>
 
-<label class="bold" for="position">Position:</label>
-<select id="position" name="position" required>
-    <option th:each="position : ${T(com.serhii.myproject.model.PlayerPosition).values()}" th:value="${position.name()}" th:text="${position.getValue()}"></option>
-</select>
-<br>
+    <label class="bold" for="position">Position:</label>
+    <select id="position" name="position" required>
+        <option th:each="position : ${T(com.serhii.myproject.model.PlayerPosition).values()}"
+                th:value="${position.name()}"
+                th:text="${position.getValue()}"
+                th:selected="${position.name() == player.position}"></option>
 
-<label class="bold" for="dateOfBirth">Date of birth:</label>
-<input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}">
+    </select>
+    <br>
 
-<br>
+    <label class="bold" for="dateOfBirth">Date of birth:</label>
+    <input type="date" id="dateOfBirth" name="dateOfBirth"
+           th:value="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}">
 
-<label class="bold" for="country">Country:</label>
-<input type="text" id="country" name="country" th:value="${player.country}" required>
-<br>
+    <br>
 
-<label class="bold" for="marketValue">Market value (€):</label>
-<input type="number" id="marketValue" name="marketValue" th:value="${player.marketValue}" required>
-<br>
+    <label class="bold" for="country">Country:</label>
+    <input type="text" id="country" name="country" th:value="${player.country}" required>
+    <br>
 
-<label class="bold" for="importantNotes">Important notes:</label><br>
-<textarea id="importantNotes" name="importantNotes" rows="5" th:value="${player.importantNotes}" required></textarea>
-<br>
+    <label class="bold" for="marketValue">Market value (€):</label>
+    <input type="number" id="marketValue" name="marketValue" th:value="${player.marketValue}" required>
+    <br>
 
-<input id="inputButton" type="submit" value="Update player">
-<button id="clearButton" type="button" onclick="clearTextFields()">Clear</button>
+    <label class="bold" for="importantNotes">Important notes:</label><br>
+    <textarea id="importantNotes" name="importantNotes" rows="5" required th:text="${player.importantNotes}"></textarea>
+
+    <br>
+
+    <input id="inputButton" type="submit" value="Update player">
+    <button id="clearButton" type="button" onclick="clearTextFields()">Clear</button>
 </form>
 </body>
 </html>
