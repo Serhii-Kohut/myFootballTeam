@@ -15,35 +15,35 @@
     <th>Value</th>
   </tr>
   <tr>
-    <td>id</td>
+    <td><b>Team ID</b></td>
     <td th:text="${player.id}"></td>
   </tr>
   <tr>
-    <td>Full name</td>
+    <td><b>Full name</b></td>
     <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
   </tr>
   <tr>
-    <td>Position</td>
+    <td><b>Position</b></td>
     <td th:text="${player.position}"></td>
   </tr>
   <tr>
-    <td>Date of birth</td>
+    <td><b>Date of birth</b></td>
     <td th:text="${player.dateOfBirth}"></td>
   </tr>
   <tr>
-    <td>Country</td>
+    <td><b>Country</b></td>
     <td th:text="${player.country}"></td>
   </tr>
   <tr>
-    <td>Market Value</td>
+    <td><b>Market Value</b></td>
     <!--<td th:text="${player.marketValue + ' €'}"></td>-->
     <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
   </tr>
   <tr>
-    <td>Notes</td>
+    <td><b>Notes</b></td>
     <td th:text="${player.importantNotes}"></td>
   </tr>
-  <td>
+
 <!--
     &lt;!&ndash;<a href="/players/{id}/update" th:href="@{'/players/' + ${player.id} + '/update'}">Update</a>&ndash;&gt;
     <a th:href="@{'/players/' + ${player.id} + '/update'}" th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update</a>
@@ -51,6 +51,7 @@
     &lt;!&ndash;<a href="/players/{id}/delete" th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>&ndash;&gt;
     <a th:href="@{'/players/' + ${player.id} + '/delete'}" th:text="'Delete ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Delete</a>
 -->
+  <td>
     <button class="btn btn-primary" th:onclick="|window.location.href='/players/${player.id}/update'|">
       <span th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}"></span>
     </button>

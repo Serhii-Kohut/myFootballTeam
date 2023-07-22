@@ -4,6 +4,7 @@ form {
     text-align: left;
     width: 50%;
     height: 70%;
+    font-family: Arial, sans-serif;
 }
 
 label {
@@ -21,12 +22,13 @@ input[type="password"] {
 }
 
 #inputButton {
-    background-color: #4bb5fc;
-    color: white;
+    background-color: #FB090B;
+    color: black;
     height: 30px;
     width: fit-content;
-    border: #4bb5fc;
+    border: #FB090B;
     display: inline-block;
+    font-family: Arial, sans-serif;
 }
 
 #clearButton {
@@ -50,18 +52,21 @@ select {
 
 a {
     text-decoration: none;
-    color: #2ba6f8;
+    color: #FB090B;
+    font-family: Arial, sans-serif;
 }
 
 th {
     text-align: left;
     border-bottom: 1px solid #c5c5c5;
     white-space: nowrap;
+    font-family: Arial, sans-serif;
 }
 
 td {
     border-bottom: 1px solid #e0e0e0;
     white-space: nowrap;
+    font-family: Arial, sans-serif;
 }
 
 .immuneText {
@@ -85,23 +90,27 @@ table {
 }
 
 #inputButtonList {
-    background-color: #4bb5fc;
+    background-color: #FB090B;
     color: white;
     height: 30px;
     width: fit-content;
     border: #4bb5fc;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #4bb5fc;
+    color: #FB090B;
+    font-family: Arial, sans-serif;
 }
 
 p {
-    color: #2ba6f8;
+    color: #FB090B;
+    font-family: Arial, sans-serif;
 }
 
 span {
-    color: #2ba6f8;
+    color: #FB090B;
+    font-family: Arial, sans-serif;
 }
 
 .separator {

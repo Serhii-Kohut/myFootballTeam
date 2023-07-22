@@ -11,23 +11,23 @@
 <h1>Member Info</h1>
 <table>
   <tr>
-    <th>Field</th>
-    <th>Value</th>
+    <th><b>Field</b></th>
+    <th><b>Value</b></th>
   </tr>
   <tr>
-    <td>id</td>
+    <td><b>Club ID</b></td>
     <td th:text="${user.id}"></td>
   </tr>
   <tr>
-    <td>Full name</td>
+    <td><b>Full name</b></td>
     <td th:text="${user.firstName + ' ' + user.lastName}"></td>
   </tr>
   <tr>
-    <td>Email</td>
+    <td><b>Email</b></td>
     <td th:text="${user.email}"></td>
   </tr>
   <tr>
-    <td>Role</td>
+    <td><b>Role</b></td>
     <td th:text="${user.role}"></td>
   </tr>
 </table>
