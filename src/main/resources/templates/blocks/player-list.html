@@ -2,19 +2,17 @@
   <h1>Board of our players</h1>
   <br>
   <div id="borderList">
-    <button id="inputButtonList" class="btn btn-primary" onclick="window.location.href='/players/create'">Add new
-      Player
-    </button>
-<br>
+    <button id="inputButtonList" class="btn btn-primary" onclick="window.location.href='/players/create'">Add new Player</button>
+    <br>
     <table>
       <thead>
       <tr id="tableFields">
         <th class="bold">No.</th>
         <th class="bold">Full Name</th>
-        <th class="bold">Date of birth</th>
-        <th class="bold">Country</th>
         <th class="bold">Position</th>
         <th class="bold">Market value</th>
+        <th class="bold">Country</th>
+        <th class="bold">Date of birth</th>
         <th class="bold">Notes</th>
         <th class="bold">Operations</th>
       </tr>
@@ -30,20 +28,17 @@
           </a>
         </td>
 
-        <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
-
-
-        <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
-        <!--<td th:text="${player.marketValue + ' €'}"></td>-->
         <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+        <td th:text="${player.country}"></td>
+        <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
         <td th:text="${player.importantNotes}"></td>
 
         <td>
           <a href="/players/{id}/update" th:href="@{'/players/' + ${player.id} + '/update'}">Update</a>
+          <span class="separator">|</span>
           <a href="/players/{id}/delete" th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
         </td>
-
       </tr>
       </tbody>
     </table>

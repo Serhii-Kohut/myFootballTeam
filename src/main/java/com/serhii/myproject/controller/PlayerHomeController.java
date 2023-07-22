@@ -22,10 +22,8 @@ public class PlayerHomeController {
     @GetMapping("/player-home")
     public String showPlayerHome(Model model) {
         List<PlayerDto> playerDtos = playerService.getAllPlayers().stream()
-                .map(PlayerTransformer::convertToDto)
+                .map(PlayerTransformer::convertToDto).sorted(Comparator.comparingLong(PlayerDto::getId))
                 .collect(Collectors.toList());
-
-        playerDtos.sort(Comparator.comparingLong(PlayerDto::getId));
 
         model.addAttribute("players", playerDtos);
         return "player-home";

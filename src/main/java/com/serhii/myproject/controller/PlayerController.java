@@ -3,7 +3,6 @@ package com.serhii.myproject.controller;
 import com.serhii.myproject.dto.PlayerDto;
 import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.Player;
-import com.serhii.myproject.model.PlayerPosition;
 import com.serhii.myproject.service.PlayerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;

@@ -56,10 +56,12 @@ a {
 th {
     text-align: left;
     border-bottom: 1px solid #c5c5c5;
+    white-space: nowrap;
 }
 
 td {
     border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
 }
 
 .immuneText {
@@ -100,4 +102,9 @@ p {
 
 span {
     color: #2ba6f8;
+}
+
+.separator {
+    margin: 0 5px; /* відступи по боках від роздільника */
+    color: #666;   /* Колір тексту роздільника */
 }
