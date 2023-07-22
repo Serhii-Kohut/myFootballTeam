@@ -36,7 +36,8 @@
   </tr>
   <tr>
     <td>Market Value</td>
-    <td th:text="${player.marketValue + ' €'}"></td>
+    <!--<td th:text="${player.marketValue + ' €'}"></td>-->
+    <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
   </tr>
   <tr>
     <td>Notes</td>
