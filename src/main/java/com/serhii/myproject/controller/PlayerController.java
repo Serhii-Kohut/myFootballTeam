@@ -5,6 +5,7 @@ import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.Player;
 import com.serhii.myproject.model.PlayerPosition;
 import com.serhii.myproject.service.PlayerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,18 +50,14 @@ public class PlayerController {
         Player originalPlayer = playerService.readById(playerDto.getId());
 
         if (originalPlayer != null) {
-            // Оновити поля, які ви отримали з форми оновлення
-            originalPlayer.setPosition(PlayerPosition.valueOf(playerDto.getPosition()));
-            originalPlayer.setDateOfBirth(playerDto.getDateOfBirth());
-            originalPlayer.setCountry(playerDto.getCountry());
-            originalPlayer.setImportantNotes(playerDto.getImportantNotes());
-            originalPlayer.setMarketValue(playerDto.getMarketValue());
-            originalPlayer.setPlayerFirstName(playerDto.getPlayerFirstName());
-            originalPlayer.setPlayerLastName(playerDto.getPlayerLastName());
+            // Оновити поля оригінального об'єкта Player за допомогою даних з форми
+            Player updatedPlayer = PlayerTransformer.convertToEntity(playerDto);
+            BeanUtils.copyProperties(updatedPlayer, originalPlayer);
 
             // Зберегти оновлені дані в базі даних
             playerService.update(originalPlayer);
         }
+
 
         return "redirect:/player-home";
     }
