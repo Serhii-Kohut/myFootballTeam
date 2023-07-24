@@ -20,61 +20,43 @@ public class PlayerHomeController {
         this.playerService = playerService;
     }
 
-    /*    @GetMapping("/player-home")
-        public String showPlayerHome(Model model) {
-            List<PlayerDto> playerDtos = playerService.getAllPlayers().stream()
-                    .map(PlayerTransformer::convertToDto).sorted(Comparator.comparingLong(PlayerDto::getId))
-                    .collect(Collectors.toList());
+    @GetMapping("/player-home")
+    public String showPlayerHome(Model model) {
 
-            model.addAttribute("players", playerDtos);
-            return "player-home";
-        }*/
-    @GetMapping("/player-home/goalkeepers")
-    public String showGoalkeepersPlayers(Model model) {
-        List<PlayerDto> goalkeepersPlayerDtos = playerService.getByPosition(PlayerPosition.valueOf("Goalkeeper"))
+        List<PlayerDto> goalkeepersPlayerDtos = playerService.getByPosition(PlayerPosition.GOALKEEPER)
                 .stream()
                 .map(PlayerTransformer::convertToDto)
-                .sorted(Comparator.comparing(PlayerDto::getId))
+                .sorted(Comparator.comparingLong(PlayerDto::getId))
                 .collect(Collectors.toList());
 
-        model.addAttribute("players", goalkeepersPlayerDtos);
-        return "player-list";
-    }
+        model.addAttribute("goalkeepers", goalkeepersPlayerDtos);
 
-    @GetMapping("/player-home/defenders")
-    public String showDefendersPlayers(Model model) {
-        List<PlayerDto> defendersPlayerDtos = playerService.getByPosition(PlayerPosition.valueOf("Defender"))
+        List<PlayerDto> defendersPlayerDtos = playerService.getByPosition(PlayerPosition.DEFENDER)
                 .stream()
                 .map(PlayerTransformer::convertToDto)
-                .sorted(Comparator.comparing(PlayerDto::getId))
+                .sorted(Comparator.comparingLong(PlayerDto::getId))
                 .collect(Collectors.toList());
 
-        model.addAttribute("players", defendersPlayerDtos);
-        return "player-list";
-    }
+        model.addAttribute("defenders", defendersPlayerDtos);
 
-    @GetMapping("/player-home/midfielders")
-    public String showMidfieldersPlayers(Model model) {
-        List<PlayerDto> midfieldersPlayerDtos = playerService.getByPosition(PlayerPosition.valueOf("Midfielder"))
+        List<PlayerDto> midfieldersPlayerDtos = playerService.getByPosition(PlayerPosition.MIDFIELDER)
                 .stream()
                 .map(PlayerTransformer::convertToDto)
-                .sorted(Comparator.comparing(PlayerDto::getId))
+                .sorted(Comparator.comparingLong(PlayerDto::getId))
                 .collect(Collectors.toList());
 
-        model.addAttribute("players", midfieldersPlayerDtos);
-        return "player-list";
-    }
+        model.addAttribute("midfielders", midfieldersPlayerDtos);
 
-    @GetMapping("/player-home/forwards")
-    public String showForwardsPlayers(Model model) {
-        List<PlayerDto> forwardsPlayerDtos = playerService.getByPosition(PlayerPosition.valueOf("Forward"))
+        List<PlayerDto> forwardsPlayerDtos = playerService.getByPosition(PlayerPosition.FORWARD)
                 .stream()
                 .map(PlayerTransformer::convertToDto)
-                .sorted(Comparator.comparing(PlayerDto::getId))
+                .sorted(Comparator.comparingLong(PlayerDto::getId))
                 .collect(Collectors.toList());
 
-        model.addAttribute("players", forwardsPlayerDtos);
-        return "player-list";
+        model.addAttribute("forwards", forwardsPlayerDtos);
+
+        return "player-home";
     }
+
 
 }
