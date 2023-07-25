@@ -14,4 +14,5 @@ public interface PlayerService {
 
     List<Player> getByPosition(PlayerPosition position);
     List<Player> getAllPlayers();
+
 }

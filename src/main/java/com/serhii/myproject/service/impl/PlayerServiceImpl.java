@@ -45,13 +45,14 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getByPosition(PlayerPosition position) {
-        List<Player> playersByPosition = Collections.singletonList(playerRepository.findPlayersByPosition(position));
-        return playersByPosition.isEmpty() ? new ArrayList<>() : playersByPosition;
+        return playerRepository.findPlayersByPosition(position);
     }
+
 
     @Override
     public List<Player> getAllPlayers() {
         List<Player> players = playerRepository.findAll();
         return players.isEmpty() ? new ArrayList<>() : players;
     }
+
 }
