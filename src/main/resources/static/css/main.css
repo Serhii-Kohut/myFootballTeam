@@ -79,6 +79,7 @@ td {
 
 table {
     border-spacing: 15px;
+    margin: 0 auto;
 }
 
 #borderList {
@@ -103,6 +104,7 @@ h1, h2{
     color: #FB090B;
     font-family: Arial, sans-serif;
     text-align: center; /* Центрування заголовка по горизонталі */
+    font-size: 17px;
 }
 
 p {
@@ -118,9 +120,4 @@ span {
 .separator {
     margin: 0 5px; /* відступи по боках від роздільника */
     color: #666;   /* Колір тексту роздільника */
-}
-
-
-table {
-    margin-top: 20px;
 }
