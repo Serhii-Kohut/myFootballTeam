@@ -36,4 +36,7 @@ public class Player {
     @Column(name = "playerlastname")
     private String playerLastName;
 
+    @Column(name = "jersey_number", length = 2)
+    private Long jerseyNumber;
+
 }

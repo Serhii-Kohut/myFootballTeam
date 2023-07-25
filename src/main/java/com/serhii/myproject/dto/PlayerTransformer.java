@@ -13,7 +13,8 @@ public class PlayerTransformer {
                 player.getImportantNotes(),
                 player.getMarketValue(),
                 player.getPlayerFirstName(),
-                player.getPlayerLastName()
+                player.getPlayerLastName(),
+                player.getJerseyNumber()
         );
     }
 
@@ -28,6 +29,7 @@ public class PlayerTransformer {
         player.setMarketValue(playerDto.getMarketValue());
         player.setPlayerFirstName(playerDto.getPlayerFirstName());
         player.setPlayerLastName(playerDto.getPlayerLastName());
+        player.setJerseyNumber(playerDto.getJerseyNumber());
         return player;
     }
 }

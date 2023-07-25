@@ -28,6 +28,8 @@ public class PlayerDto {
 
     private String playerLastName;
 
+    private Long jerseyNumber;
+
     public PlayerDto() {
     }
 }

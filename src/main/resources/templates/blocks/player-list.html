@@ -22,7 +22,11 @@
         </thead>
         <tbody>
         <tr th:each="player, iterStat : ${goalkeepers}">
+<!--
             <td th:text="${iterStat.count}"></td>
+-->
+            <td th:text="${player.jerseyNumber}"></td>
+
             <td>
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
@@ -47,7 +51,10 @@
     <table>
         <tbody>
         <tr th:each="player, iterStat : ${defenders}">
+            <!--
             <td th:text="${iterStat.count}"></td>
+-->
+            <td th:text="${player.jerseyNumber}"></td>
             <td>
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
@@ -71,7 +78,10 @@
     <table>
         <tbody>
         <tr th:each="player, iterStat : ${midfielders}">
+            <!--
             <td th:text="${iterStat.count}"></td>
+-->
+            <td th:text="${player.jerseyNumber}"></td>
             <td>
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
@@ -95,7 +105,10 @@
     <table>
         <tbody>
         <tr th:each="player, iterStat : ${forwards}">
+            <!--
             <td th:text="${iterStat.count}"></td>
+-->
+            <td th:text="${player.jerseyNumber}"></td>
             <td>
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
