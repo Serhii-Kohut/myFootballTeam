@@ -99,7 +99,7 @@ table {
     font-family: Arial, sans-serif;
 }
 
-h1 {
+h1, h2{
     color: #FB090B;
     font-family: Arial, sans-serif;
     text-align: center; /* Центрування заголовка по горизонталі */

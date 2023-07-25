@@ -15,7 +15,11 @@
         <tbody>
         <tr th:each="player, iterStat : ${goalkeepers}">
             <td th:text="${iterStat.count}"></td>
-            <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
+            <td>
+                <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
+                    <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
+                </a>
+            </td>
             <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
@@ -33,7 +37,7 @@
 <div th:fragment="defenderList">
     <h2>DEFENDERS</h2>
     <table>
-        <thead>
+<!--        <thead>
         <tr>
             <th>No.</th>
             <th>Full Name</th>
@@ -43,12 +47,15 @@
             <th>Notes</th>
             <th>Operations</th>
         </tr>
-        </thead>
+        </thead>-->
         <tbody>
         <tr th:each="player, iterStat : ${defenders}">
             <td th:text="${iterStat.count}"></td>
-            <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td>
+                <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
+                    <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
+                </a>
+            </td>            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
@@ -64,7 +71,7 @@
 <div th:fragment="midfielderList">
     <h2>MIDFIELDERS</h2>
     <table>
-        <thead>
+<!--        <thead>
         <tr>
             <th>No.</th>
             <th>Full Name</th>
@@ -74,12 +81,15 @@
             <th>Notes</th>
             <th>Operations</th>
         </tr>
-        </thead>
+        </thead>-->
         <tbody>
         <tr th:each="player, iterStat : ${midfielders}">
             <td th:text="${iterStat.count}"></td>
-            <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td>
+                <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
+                    <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
+                </a>
+            </td>            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
@@ -95,7 +105,7 @@
 <div th:fragment="forwardList">
     <h2>FORWARDS</h2>
     <table>
-        <thead>
+        <!--<thead>
         <tr>
             <th>No.</th>
             <th>Full Name</th>
@@ -105,12 +115,15 @@
             <th>Notes</th>
             <th>Operations</th>
         </tr>
-        </thead>
+        </thead>-->
         <tbody>
         <tr th:each="player, iterStat : ${forwards}">
             <td th:text="${iterStat.count}"></td>
-            <td th:text="${player.playerFirstName + ' ' + player.playerLastName}"></td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td>
+                <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
+                    <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
+                </a>
+            </td>            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
