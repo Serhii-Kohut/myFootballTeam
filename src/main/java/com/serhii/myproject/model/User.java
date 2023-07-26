@@ -38,4 +38,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR")
     private Role role;
+
+    public String getUsername() {
+        return email;
+    }
 }
