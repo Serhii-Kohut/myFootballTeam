@@ -1,4 +1,4 @@
-package com.serhii.myproject.service.impl;
+package com.serhii.myproject.config;
 
 import com.serhii.myproject.model.User;
 import com.serhii.myproject.repository.UserRepository;
@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Collections;
 
 public class CustomUserDetails implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepository;
 
