@@ -5,6 +5,7 @@ import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.Player;
 import com.serhii.myproject.service.PlayerService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class PlayerController {
         return "create-player";
     }
 
+    @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @PostMapping("/create")
     public String createPlayer(@ModelAttribute("playerDto") PlayerDto playerDto) {
         Player player = PlayerTransformer.convertToEntity(playerDto);
@@ -36,15 +38,15 @@ public class PlayerController {
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "player-info";
     }
-
+    @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @GetMapping("/{id}/update")
     public String showUpdateFormPlayer(@PathVariable("id") long id, Model model) {
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "update-player";
     }
-
+    @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @PostMapping("/update")
-    public String updatePlayer(@ModelAttribute PlayerDto playerDto){
+    public String updatePlayer(@ModelAttribute PlayerDto playerDto) {
         // Отримати оригінальний об'єкт Player з бази даних за допомогою id
         Player originalPlayer = playerService.readById(playerDto.getId());
 
@@ -61,7 +63,7 @@ public class PlayerController {
         return "redirect:/player-home";
     }
 
-
+    @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @GetMapping("/{id}/delete")
     private String delete(@PathVariable("id") long id) {
         playerService.delete(id);
