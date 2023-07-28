@@ -28,14 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/admin/**").hasRole("PRESIDENT")
-                .antMatchers("/users/create").hasRole("PRESIDENT")
-                .antMatchers("/users/*/edit").hasRole("PRESIDENT")
-                .antMatchers("/players/create").hasAnyRole("PRESIDENT", "SPORT_DIRECTOR")
-                .antMatchers("/players/*/edit").hasAnyRole("PRESIDENT", "SPORT_DIRECTOR")
+                .antMatchers("/users/**").hasRole("PRESIDENT")
+                .antMatchers("/players/**").hasAnyRole("PRESIDENT", "SPORT_DIRECTOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
     }
+
+
 
 }
 

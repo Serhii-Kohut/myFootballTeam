@@ -30,9 +30,7 @@
         <option th:each="role : ${T(com.serhii.myproject.model.Role).values()}" th:value="${role.name()}" th:text="${role.getValue()}"></option>
     </select>
 
-
-
-    <input id="inputButton" type="submit" value="Register">
+    <input id="inputButton" type="submit" th:if="${#authorization.expression('hasRole(''ROLE_PRESIDENT'')')}" value="Register">
     <button id="clearButton" type="button" onclick="clearTextFields()">Clear</button>
 </form>
 <script>
