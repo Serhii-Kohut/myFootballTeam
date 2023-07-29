@@ -1,6 +1,5 @@
 package com.serhii.myproject.config;
 
-import com.serhii.myproject.model.Role;
 import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

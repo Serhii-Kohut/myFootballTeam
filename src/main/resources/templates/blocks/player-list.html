@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Players of our team</title>
@@ -17,7 +17,7 @@
             <th style="text-align: center;">Country</th>
             <th style="text-align: center;">Date of birth</th>
             <th style="text-align: center;">Notes</th>
-            <th style="text-align: center;">Operations</th>
+            <th style="text-align: center;" sec:authorize="hasAuthority('SPORT_DIRECTOR')">Operations</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
-            <td>
+            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -64,7 +64,7 @@
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
-            <td>
+            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -91,7 +91,8 @@
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
-            <td>
+
+            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -118,14 +119,14 @@
             <td th:text="${player.country}"></td>
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
             <td th:text="${player.importantNotes}"></td>
-            <td>
+            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <button id="inputButton" class="btn btn-primary" onclick="window.location.href='/players/create'">Add Player</button>
+    <button sec:authorize="hasAuthority('SPORT_DIRECTOR')" id="inputButton" class="btn btn-primary" onclick="window.location.href='/players/create'">Add Player</button>
 </div>
 </body>
 </html>

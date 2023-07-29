@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
@@ -44,19 +44,12 @@
     <td th:text="${player.importantNotes}"></td>
   </tr>
 
-<!--
-    &lt;!&ndash;<a href="/players/{id}/update" th:href="@{'/players/' + ${player.id} + '/update'}">Update</a>&ndash;&gt;
-    <a th:href="@{'/players/' + ${player.id} + '/update'}" th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Update</a>
-    <span class="separator">|</span>
-    &lt;!&ndash;<a href="/players/{id}/delete" th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>&ndash;&gt;
-    <a th:href="@{'/players/' + ${player.id} + '/delete'}" th:text="'Delete ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}">Delete</a>
--->
-  <td>
+  <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
     <button class="btn btn-primary" th:onclick="|window.location.href='/players/${player.id}/update'|">
       <span th:text="'Update ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}"></span>
     </button>
   </td>
-  <td>
+  <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
      <button class="btn btn-danger" th:onclick="|window.location.href='/players/${player.id}/delete'|">
       <span th:text="'Delete ' + ${player.playerFirstName} + ' ' + ${player.playerLastName}"></span>
     </button>
