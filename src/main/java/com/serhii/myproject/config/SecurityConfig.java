@@ -27,16 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/public/**").permitAll()
+                .antMatchers("/custom-login").permitAll()
                 .antMatchers("/users/**").hasAuthority("PRESIDENT")
                 .antMatchers("/players/**").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR", "COACH")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/custom-login")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
     }
