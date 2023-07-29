@@ -2,24 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Custom Login Page</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <div th:insert="blocks/header :: header"></div>
-<h1>Custom Login Page</h1>
+<h1>Login Page</h1>
 <form th:action="@{/custom-login}" method="POST">
     <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
+        <input type="text" id="username" name="username" required/>
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" name="password" required/>
     </div>
     <div>
-        <br />
-        <input type="submit" class="btn btn-info" value="Log In" />
+        <br/>
+        <input type="submit" class="btn btn-info" value="Log In"/>
     </div>
 </form>
 </body>
