@@ -1,5 +1,6 @@
 package com.serhii.myproject.config;
 
+import com.serhii.myproject.model.Role;
 import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -22,20 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/public/**").permitAll()
-                .antMatchers("/admin/**").hasRole("PRESIDENT")
-                .antMatchers("/users/**").hasRole("PRESIDENT")
-                .antMatchers("/players/**").hasAnyRole("PRESIDENT", "SPORT_DIRECTOR")
+                .antMatchers("/users/**").hasAuthority("PRESIDENT")
+                .antMatchers("/players/**").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
     }
-
-
-
 }
+
 
