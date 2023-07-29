@@ -1,4 +1,4 @@
-<div th:fragment="userList">
+<div th:fragment="userList" xmlns:sec="http://www.w3.org/1999/xhtml">
     <h1>Board of members of our club</h1>
     <br>
     <div id="borderList">
@@ -10,28 +10,26 @@
                 <th class="bold" style="text-align: center;">No.</th>
                 <th class="bold" style="text-align: center;">Full Name</th>
                 <th class="bold" style="text-align: center;">E-mail</th>
-                <th class="bold" style="text-align: center;">Operations</th>
+                <th class="bold" style="text-align: center;" sec:authorize="hasAuthority('PRESIDENT')">Operations</th>
             </tr>
-
             </thead>
             <tbody>
             <tr th:each="user, iterStat : ${users}">
                 <td class="bold" th:text="${iterStat.count}"></td>
                 <td>
-                    <a href="/users/{id}/read" th:href="@{'/users/' + ${user.id} + '/read'}">
+                    <a th:if="${#authorization.expression('hasAuthority(''PRESIDENT'')')}" th:href="@{'/users/' + ${user.id} + '/read'}">
                         <span th:text="${user.firstName + ' ' + user.lastName}"></span>
                     </a>
+                    <span th:unless="${#authorization.expression('hasAuthority(''PRESIDENT'')')}" th:text="${user.firstName + ' ' + user.lastName}"></span>
                 </td>
+
                 <td th:text="${user.email}"></td>
-                <td>
+                <td sec:authorize="hasAuthority('PRESIDENT')">
                     <a href="/users/{id}/update" th:href="@{'/users/' + ${user.id} + '/update'}">Update</a>
                     <a href="/users/{id}/delete" th:href="@{'/users/' + ${user.id} + '/delete'}">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
-        <button id="inputButton" class="btn btn-primary" onclick="window.location.href='/users/create'">Create new
-            User
-        </button>
     </div>
 </div>

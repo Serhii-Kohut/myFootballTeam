@@ -18,7 +18,7 @@ public class PlayerController {
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
     }
-
+    @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @GetMapping("/create")
     public String showCreateFormPlayer(Model model) {
         model.addAttribute("player", new PlayerDto());
