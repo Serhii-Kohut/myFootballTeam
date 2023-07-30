@@ -53,3 +53,7 @@ a {
     text-decoration: none;
     color: inherit; /* Якщо потрібно зберегти колір посилань */
 }
+
+.red-text {
+    color: red;
+}

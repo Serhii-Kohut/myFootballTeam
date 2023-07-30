@@ -5,9 +5,8 @@
     <a href="/managers-home" style="color: #595a5b; text-decoration: none;">Our MANAGEMENT</a>
     <span class="separator">|</span>
     <a href="/player-home" style="color: #595a5b; text-decoration: none;">Our FIRST TEAM</a>
-    <!--
-        <span th:if="${user != null and user.firstName}">Hello, <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></span>
-    -->
+    <span th:if="${user != null and user.firstName != null}">Hello, <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></span>
+
   </div>
   <div style="text-align: right;">
     <a href="/logout" style="color: #595a5b; text-decoration: none;">Log Out</a>
