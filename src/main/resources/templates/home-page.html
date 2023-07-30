@@ -6,7 +6,16 @@
   <link rel="stylesheet" th:href="@{/css/choice-card.css}"/>
 </head>
 <body>
-<h1>Welcome to the Homepage of OUR club!</h1>
+<h1 th:if="${user != null}">
+  Welcome to the Homepage of OUR club,
+  <span th:text="${user.firstName}" class="red-text"></span>
+  <span th:text="' '"></span>
+  <span th:text="${user.lastName}" class="red-text"></span>
+</h1>
+<h1 th:unless="${user != null}">Welcome to the Homepage of OUR club!</h1>
+
+
+
 <h2>Please, make your choice</h2>
 <div class="choice-container">
   <a href="http://localhost:9091/managers-home">
