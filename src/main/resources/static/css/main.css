@@ -104,7 +104,7 @@ table {
     font-family: Arial, sans-serif;
 }
 
-h1, h2{
+h1, h2 {
     color: #FB090B;
     font-family: Arial, sans-serif;
     text-align: center; /* Центрування заголовка по горизонталі */
@@ -123,5 +123,26 @@ span {
 
 .separator {
     margin: 0 5px; /* відступи по боках від роздільника */
-    color: #666;   /* Колір тексту роздільника */
+    color: #666; /* Колір тексту роздільника */
+}
+
+.create-button {
+    background-color: #FB090B; /* Зелений колір фону */
+    border: none; /* Видаляємо рамку кнопки */
+    color: black; /* Колір тексту */
+    padding: 10px 20px; /* Відступи внутрішньої області кнопки */
+    text-align: center; /* Вирівнювання тексту по центру */
+    text-decoration: none; /* Відміняємо підкреслення тексту */
+    /*   display: inline-block;  Встановлюємо тип блока */
+    display: flex; /* Встановлюємо контейнер з кнопками у flexbox */
+    justify-content: center; /* Вирівнюємо елементи по головній осі (горизонтально) */
+    font-size: 16px; /* Розмір тексту */
+    margin: 4px 2px; /* Зовнішні відступи */
+    cursor: pointer; /* Змінюємо курсор при наведенні на кнопку */
+    border-radius: 8px; /* Радіус закруглення кутиків кнопки */
+}
+
+/* Змінюємо колір кнопки при наведенні */
+.create-button:hover {
+    background-color: #CC2929;
 }
