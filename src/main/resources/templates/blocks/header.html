@@ -1,14 +1,22 @@
-<div th:fragment="header" style="background-color: #f2f2f2; padding: 10px; margin-top: -10px; margin-left: -10px; margin-right: -10px; display: flex; justify-content: space-between;">
-  <div style="text-align: left;">
-    <a href="/home" style="color: #595a5b; text-decoration: none;">HOME PAGE</a>
-    <span class="separator">|</span>
-    <a href="/managers-home" style="color: #595a5b; text-decoration: none;">Our MANAGEMENT</a>
-    <span class="separator">|</span>
-    <a href="/player-home" style="color: #595a5b; text-decoration: none;">Our FIRST TEAM</a>
-    <span th:if="${user != null and user.firstName != null}">Hello, <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></span>
+<div th:fragment="header"
+     style="background-color: #f2f2f2; padding: 10px; margin-top: -10px; margin-left: -10px; margin-right: -10px; display: flex; justify-content: space-between;">
+    <div style="text-align: left;">
+        <a href="/home" style="color: #595a5b; text-decoration: none;">HOME PAGE</a>
+        <span class="separator">|</span>
+        <a href="/managers-home" style="color: #595a5b; text-decoration: none;">Our MANAGEMENT</a>
+        <span class="separator">|</span>
+        <a href="/player-home" style="color: #595a5b; text-decoration: none;">Our FIRST TEAM</a>
 
-  </div>
-  <div style="text-align: right;">
-    <a href="/logout" style="color: #595a5b; text-decoration: none;">Log Out</a>
-  </div>
+
+    </div>
+
+    <div style="text-align: right;">
+            <span th:if="${user != null}">Hello,
+            <span th:text="${user.firstName}" class="red-text"></span>
+            <span th:text="' '"></span>
+            <span th:text="${user.lastName}" class="red-text"></span>
+        </span>
+        <span class="separator">|</span>
+        <a href="/logout" style="color: #595a5b; text-decoration: none;">Log Out</a>
+    </div>
 </div>
