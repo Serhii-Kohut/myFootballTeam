@@ -1,5 +1,6 @@
 package com.serhii.myproject.controller;
 
+import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.dto.PlayerDto;
 import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.Player;
@@ -10,17 +11,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/players")
 public class PlayerController {
     private final PlayerService playerService;
+    private final HeaderComponent headerComponent;
 
-    public PlayerController(PlayerService playerService) {
+    public PlayerController(PlayerService playerService, HeaderComponent headerComponent) {
         this.playerService = playerService;
+        this.headerComponent = headerComponent;
     }
+
     @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @GetMapping("/create")
-    public String showCreateFormPlayer(Model model) {
+    public String showCreateFormPlayer(Model model, Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("player", new PlayerDto());
         return "create-player";
     }
@@ -34,16 +41,20 @@ public class PlayerController {
     }
 
     @GetMapping("/{id}/read")
-    public String read(@PathVariable("id") long id, Model model) {
+    public String read(@PathVariable("id") long id, Model model, Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "player-info";
     }
+
     @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @GetMapping("/{id}/update")
-    public String showUpdateFormPlayer(@PathVariable("id") long id, Model model) {
+    public String showUpdateFormPlayer(@PathVariable("id") long id, Model model, Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("player", PlayerTransformer.convertToDto(playerService.readById(id)));
         return "update-player";
     }
+
     @PreAuthorize("hasRole('PRESIDENT') or hasRole('SPORT_DIRECTOR')")
     @PostMapping("/update")
     public String updatePlayer(@ModelAttribute PlayerDto playerDto) {

@@ -1,5 +1,6 @@
 package com.serhii.myproject.controller;
 
+import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.dto.UserDto;
 import com.serhii.myproject.dto.UserTransformer;
 import com.serhii.myproject.model.User;
@@ -9,18 +10,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final HeaderComponent headerComponent;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, HeaderComponent headerComponent) {
         this.userService = userService;
+        this.headerComponent = headerComponent;
     }
 
     @GetMapping("/create")
-    public String showCreateForm(Model model) {
+    public String showCreateForm(Model model, Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("userDto", new UserDto());
         return "create-user";
     }
@@ -33,13 +39,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}/read")
-    public String read(@PathVariable("id") long id, Model model) {
+    public String read(@PathVariable("id") long id, Model model,Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("user", UserTransformer.convertToDto(userService.readById(id)));
         return "user-info";
     }
     @PreAuthorize("hasRole('PRESIDENT')")
     @GetMapping("/{id}/update")
-    public String update(@PathVariable("id") long id, Model model) {
+    public String update(@PathVariable("id") long id, Model model, Principal principal) {
+        headerComponent.addUserToModel(model, principal);
         model.addAttribute("user", UserTransformer.convertToDto(userService.readById(id)));
         return "update-user";
     }
