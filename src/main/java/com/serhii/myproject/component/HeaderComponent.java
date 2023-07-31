@@ -2,6 +2,8 @@ package com.serhii.myproject.component;
 
 import com.serhii.myproject.model.User;
 import com.serhii.myproject.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
@@ -9,6 +11,9 @@ import java.security.Principal;
 
 @Component
 public class HeaderComponent {
+
+    private static final Logger logger = LoggerFactory.getLogger(HeaderComponent.class);
+
     public final UserRepository userRepository;
 
     public HeaderComponent(UserRepository userRepository) {
@@ -18,8 +23,12 @@ public class HeaderComponent {
     public void addUserToModel(Model model, Principal principal) {
         User user = null;
         if (principal != null) {
+            logger.info("Adding user to model: {}", principal.getName());
+
             user = userRepository.findByEmail(principal.getName());
             model.addAttribute("user", user);
+        } else {
+            logger.info("No user found");
         }
     }
 }
