@@ -26,6 +26,7 @@
                 <td th:text="${user.email}"></td>
                 <td sec:authorize="hasAuthority('PRESIDENT')">
                     <a href="/users/{id}/update" th:href="@{'/users/' + ${user.id} + '/update'}">Update</a>
+                    <span class="separator">|</span>
                     <a href="/users/{id}/delete" th:href="@{'/users/' + ${user.id} + '/delete'}">Delete</a>
                 </td>
             </tr>
