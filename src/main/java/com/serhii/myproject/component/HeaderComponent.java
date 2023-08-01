@@ -21,12 +21,12 @@ public class HeaderComponent {
     }
 
     public void addUserToModel(Model model, Principal principal) {
-        User user = null;
+        User loggedInUser = null;
         if (principal != null) {
             logger.info("Adding user to model: {}", principal.getName());
 
-            user = userRepository.findByEmail(principal.getName());
-            model.addAttribute("user", user);
+            loggedInUser = userRepository.findByEmail(principal.getName());
+            model.addAttribute("loggedInUser", loggedInUser);
         } else {
             logger.info("No user found");
         }
