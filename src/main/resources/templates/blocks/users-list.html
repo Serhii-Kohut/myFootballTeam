@@ -32,4 +32,5 @@
             </tbody>
         </table>
     </div>
+    <button sec:authorize="hasAuthority('PRESIDENT')" class="create-button" onclick="window.location.href='/users/create'">Add club member</button>
 </div>

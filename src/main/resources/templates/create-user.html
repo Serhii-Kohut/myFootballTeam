@@ -29,7 +29,7 @@
     <select id="role" name="role" required>
         <option th:each="role : ${T(com.serhii.myproject.model.Role).values()}" th:value="${role.name()}" th:text="${role.getValue()}"></option>
     </select>
-
+<br>
     <input class="create-button" type="submit" value="Add new User">
 
     <button id="clearButton" type="button" onclick="clearTextFields()">Clear</button>

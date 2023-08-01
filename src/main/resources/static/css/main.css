@@ -34,13 +34,31 @@ input[type="password"] {
 }
 
 #clearButton {
-    background-color: #e7e4e4;
+ /*   background-color: #e7e4e4;
     color: black;
     height: 30px;
     border: #e7e4e4;
     width: fit-content;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto;*/
+
+    background-color: #e7e4e4;
+    border: none; /
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    justify-content: center;
+    font-size: 16px;
+      margin: 4px 2px;
+   /* margin: 0 auto;*/
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#clearButton:hover {
+    background-color: whitesmoke;
 }
 
 .bold {
@@ -134,7 +152,7 @@ span {
     text-align: center; /* Вирівнювання тексту по центру */
     text-decoration: none; /* Відміняємо підкреслення тексту */
     /*   display: inline-block;  Встановлюємо тип блока */
-    display: flex; /* Встановлюємо контейнер з кнопками у flexbox */
+    display: inline-block;
     justify-content: center; /* Вирівнюємо елементи по головній осі (горизонтально) */
     font-size: 16px; /* Розмір тексту */
     margin: 4px 2px; /* Зовнішні відступи */
