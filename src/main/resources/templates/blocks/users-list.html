@@ -10,7 +10,9 @@
                 <th class="bold" style="text-align: center;">No.</th>
                 <th class="bold" style="text-align: center;">Full Name</th>
                 <th class="bold" style="text-align: center;">Role</th>
+<!--
                 <th class="bold" style="text-align: center;">E-mail</th>
+-->
                 <th class="bold" style="text-align: center;" sec:authorize="hasAuthority('PRESIDENT')">Operations</th>
             </tr>
             </thead>
@@ -24,7 +26,7 @@
                     <span th:unless="${#authorization.expression('hasAuthority(''PRESIDENT'')')}" th:text="${user.firstName + ' ' + user.lastName}"></span>
                 </td>
                 <td th:text="${user.role.getValue()}"></td>
-                <td th:text="${user.email}"></td>
+                <!--<td th:text="${user.email}"></td>-->
                 <td sec:authorize="hasAuthority('PRESIDENT')">
                     <a href="/users/{id}/update" th:href="@{'/users/' + ${user.id} + '/update'}">Update</a>
                     <span class="separator">|</span>
