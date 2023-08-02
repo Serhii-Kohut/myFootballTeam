@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +30,8 @@ public class ManagersHomeController {
 
         List<UserDto> userDtos = userService.getAllUsers().stream()
                 .map(UserTransformer::convertToDto)
+                .sorted(Comparator.comparingInt(userDto -> userDto.getRole().getPriority()))
                 .collect(Collectors.toList());
-
         model.addAttribute("users", userDtos);
 
         return "managers-home";
