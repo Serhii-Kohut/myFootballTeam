@@ -83,6 +83,7 @@ th {
     border-bottom: 1px solid #c5c5c5;
     white-space: nowrap;
     font-family: Arial, sans-serif;
+    color: red;
 }
 
 td {
@@ -126,7 +127,7 @@ h1, h2 {
     color: #FB090B;
     font-family: Arial, sans-serif;
     text-align: center; /* Центрування заголовка по горизонталі */
-    font-size: 17px;
+    font-size: 25px;
 }
 
 p {
@@ -160,7 +161,11 @@ span {
     border-radius: 8px; /* Радіус закруглення кутиків кнопки */
 }
 
-/* Змінюємо колір кнопки при наведенні */
 .create-button:hover {
     background-color: #CC2929;
+}
+
+.value-cell {
+    width: 150px;
+    text-align: center;
 }

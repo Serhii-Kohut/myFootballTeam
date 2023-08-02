@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Players of our team</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/> <!-- Припустимо, це ваш внутрішній стиль -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <div th:fragment="goalkeeperList">
@@ -29,18 +29,18 @@
 -->
             <td th:text="${player.jerseyNumber}"></td>
 
-            <td>
+            <td class="value-cell">
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
                 </a>
             </td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
-            <td th:text="${player.country}"></td>
+            <td class="value-cell" th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td class="value-cell" th:text="${player.country}"></td>
 <!--
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
 
             <td th:text="${player.importantNotes}"></td>-->
-            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
+            <td class="value-cell" sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -59,18 +59,18 @@
             <td th:text="${iterStat.count}"></td>
 -->
             <td th:text="${player.jerseyNumber}"></td>
-            <td>
+            <td class="value-cell">
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
                 </a>
             </td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
-            <td th:text="${player.country}"></td>
+            <td class="value-cell" th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td class="value-cell" th:text="${player.country}"></td>
 <!--
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
 
             <td th:text="${player.importantNotes}"></td>-->
-            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
+            <td class="value-cell" sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -88,19 +88,19 @@
             <td th:text="${iterStat.count}"></td>
 -->
             <td th:text="${player.jerseyNumber}"></td>
-            <td>
+            <td class="value-cell" >
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
                 </a>
             </td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
-            <td th:text="${player.country}"></td>
+            <td class="value-cell"  th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td class="value-cell"  th:text="${player.country}"></td>
 <!--
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
 
             <td th:text="${player.importantNotes}"></td>-->
 
-            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
+            <td class="value-cell"  sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
@@ -118,18 +118,18 @@
             <td th:text="${iterStat.count}"></td>
 -->
             <td th:text="${player.jerseyNumber}"></td>
-            <td>
+            <td class="value-cell" >
                 <a href="/players/{id}/read" th:href="@{'/players/' + ${player.id} + '/read'}">
                     <span th:text="${player.playerFirstName + ' ' + player.playerLastName}"></span>
                 </a>
             </td>
-            <td th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
-            <td th:text="${player.country}"></td>
+            <td class="value-cell"  th:text="${#strings.replace(#numbers.formatInteger(player.marketValue, 0, 'DEFAULT'), ',', ' ') + ' €'}"></td>
+            <td class="value-cell"  th:text="${player.country}"></td>
 <!--
             <td th:text="${#temporals.format(player.dateOfBirth, 'yyyy-MM-dd')}"></td>
 
             <td th:text="${player.importantNotes}"></td>-->
-            <td sec:authorize="hasAuthority('SPORT_DIRECTOR')">
+            <td class="value-cell" sec:authorize="hasAuthority('SPORT_DIRECTOR')">
                 <a th:href="@{'/players/' + ${player.id} + '/update'}">Update</a> |
                 <a th:href="@{'/players/' + ${player.id} + '/delete'}">Delete</a>
             </td>
