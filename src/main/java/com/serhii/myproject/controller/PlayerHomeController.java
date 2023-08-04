@@ -5,6 +5,8 @@ import com.serhii.myproject.dto.PlayerDto;
 import com.serhii.myproject.dto.PlayerTransformer;
 import com.serhii.myproject.model.PlayerPosition;
 import com.serhii.myproject.service.PlayerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 
 @Controller
 public class PlayerHomeController {
+
+    Logger logger = LoggerFactory.getLogger(PlayerHomeController.class);
     private final PlayerService playerService;
     private final HeaderComponent headerComponent;
 
@@ -59,6 +63,8 @@ public class PlayerHomeController {
                 .collect(Collectors.toList());
 
         model.addAttribute("forwards", forwardsPlayerDtos);
+
+        logger.info("Players home page was showed");
 
         return "player-home";
     }

@@ -4,6 +4,8 @@ import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.dto.UserDto;
 import com.serhii.myproject.dto.UserTransformer;
 import com.serhii.myproject.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ManagersHomeController {
+
+    Logger logger = LoggerFactory.getLogger(ManagersHomeController.class);
     private final UserService userService;
     private final HeaderComponent headerComponent;
 
@@ -33,6 +37,8 @@ public class ManagersHomeController {
                 .sorted(Comparator.comparingInt(userDto -> userDto.getRole().getPriority()))
                 .collect(Collectors.toList());
         model.addAttribute("users", userDtos);
+
+        logger.info("Managers home page was showed");
 
         return "managers-home";
     }
