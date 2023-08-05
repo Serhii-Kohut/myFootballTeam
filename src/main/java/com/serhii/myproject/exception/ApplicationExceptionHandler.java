@@ -19,4 +19,21 @@ public class ApplicationExceptionHandler {
         modelAndView.addObject("errorInfo", exception.getMessage());
         return modelAndView;
     }
+
+    @ExceptionHandler(NullEntityReferenceException.class)
+    public ModelAndView handleNullEntityReferenceException(NullEntityReferenceException exception) {
+        logger.info("NullEntityReferenceException thrown");
+
+        ModelAndView modelAndView = new ModelAndView("error500", HttpStatus.INTERNAL_SERVER_ERROR);
+        modelAndView.addObject("errorInfo", exception.getMessage());
+        return modelAndView;
+    }
+
+    public ModelAndView handleEntityNotFoundException(EntityNotFoundException exception) {
+        logger.info("EntityNotFoundException thrown");
+
+        ModelAndView modelAndView = new ModelAndView("error404", HttpStatus.NOT_FOUND);
+        modelAndView.addObject("errorInfo", exception.getMessage());
+        return modelAndView;
+    }
 }
