@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403 - Access denied</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+<h1>403 - Access denied</h1>
+<h2>Error info:</h2>
+<div th:text="${errorInfo}"></div>
+</body>
+</html>

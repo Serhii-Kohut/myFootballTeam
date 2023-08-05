@@ -68,7 +68,7 @@ public class UserController {
     }
     @PreAuthorize("hasRole('PRESIDENT')")
     @PostMapping("/update")
-    public String update(@ModelAttribute UserDto userDto) {
+    private String update(@ModelAttribute UserDto userDto) {
         userService.update(UserTransformer.convertToEntity(userDto));
 
         logger.info("User data was updated");
@@ -77,7 +77,7 @@ public class UserController {
     }
     @PreAuthorize("hasRole('PRESIDENT')")
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable("id") long id) {
+    private String delete(@PathVariable("id") long id) {
         userService.delete(id);
 
         logger.info("User was deleted");
