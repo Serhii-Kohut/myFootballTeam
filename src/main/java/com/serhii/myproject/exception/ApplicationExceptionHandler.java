@@ -16,7 +16,7 @@ public class ApplicationExceptionHandler {
     public ModelAndView handleException(Exception exception) {
         logger.info("One of Cinrollers exception thrown");
 
-        ModelAndView modelAndView = new ModelAndView("errors/error400", HttpStatus.BAD_REQUEST);
+        ModelAndView modelAndView = new ModelAndView("error/error400", HttpStatus.BAD_REQUEST);
         modelAndView.addObject("errorInfo", exception.getMessage());
         return modelAndView;
     }
@@ -25,7 +25,7 @@ public class ApplicationExceptionHandler {
     public ModelAndView handleNullEntityReferenceException(NullEntityReferenceException exception) {
         logger.info("NullEntityReferenceException thrown");
 
-        ModelAndView modelAndView = new ModelAndView("errors/error500", HttpStatus.INTERNAL_SERVER_ERROR);
+        ModelAndView modelAndView = new ModelAndView("error/error500", HttpStatus.INTERNAL_SERVER_ERROR);
         modelAndView.addObject("errorInfo", exception.getMessage());
         return modelAndView;
     }
@@ -34,14 +34,14 @@ public class ApplicationExceptionHandler {
     public ModelAndView handleEntityNotFoundException(EntityNotFoundException exception) {
         logger.info("EntityNotFoundException thrown");
 
-        ModelAndView modelAndView = new ModelAndView("errors/error404", HttpStatus.NOT_FOUND);
+        ModelAndView modelAndView = new ModelAndView("error/error404", HttpStatus.NOT_FOUND);
         modelAndView.addObject("errorInfo", exception.getMessage());
         return modelAndView;
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView handleAccessDeniedException(AccessDeniedException exception) {
-        ModelAndView modelAndView = new ModelAndView("errors/error403");
+        ModelAndView modelAndView = new ModelAndView("error/error403");
         modelAndView.setStatus(HttpStatus.FORBIDDEN);
         modelAndView.addObject("errorInfo", "Access denied! You don't have permission to access this resource.");
         return modelAndView;
