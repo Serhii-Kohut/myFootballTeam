@@ -3,6 +3,9 @@ package com.serhii.myproject.controllers;
 import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.config.SecurityConfig;
 import com.serhii.myproject.controller.UserController;
+import com.serhii.myproject.dto.UserDto;
+import com.serhii.myproject.dto.UserTransformer;
+import com.serhii.myproject.model.User;
 import com.serhii.myproject.service.UserService;
 import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.junit.Test;
@@ -15,10 +18,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 
 @RunWith(SpringRunner.class)
@@ -51,5 +57,27 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/create"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
+    @Test
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
+    public void testCreateUser() throws Exception {
+        UserDto userDto = new UserDto();
+        userDto.setEmail("test@example.com");
+        userDto.setFirstName("Test");
+        userDto.setLastName("User");
+
+
+        mockMvc.perform(post("/users/create")
+                        .with(csrf())
+                        .param("email", "test@example.com")
+                        .param("firstName", "Test")
+                        .param("lastName", "User"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/managers-home")
+                );
+
+        User expectedUser = UserTransformer.convertToEntity(userDto);
+        verify(userService).create(expectedUser);
     }
 }
