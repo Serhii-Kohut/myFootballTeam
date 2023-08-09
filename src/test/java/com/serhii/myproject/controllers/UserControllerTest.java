@@ -4,6 +4,7 @@ import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.config.SecurityConfig;
 import com.serhii.myproject.controller.UserController;
 import com.serhii.myproject.service.UserService;
+import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,11 @@ public class UserControllerTest {
     @MockBean
     private HeaderComponent headerComponent;
 
+    @MockBean
+    private CustomUserDetails customUserDetails;
+
     @Test
- //   @WithMockUser(username = "test@example.com")
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
     public void testShowCreateFormWhenAuthenticated() throws Exception {
         mockMvc.perform(get("/users/create").principal(() -> "test@example.com"))
                 .andExpect(status().isOk())
