@@ -46,7 +46,7 @@ public class UserController {
 
         return "redirect:/managers-home";
     }
-
+    @PreAuthorize("hasRole('PRESIDENT')")
     @GetMapping("/{id}/read")
     public String read(@PathVariable("id") long id, Model model,Principal principal) {
         headerComponent.addUserToModel(model, principal);
