@@ -13,15 +13,21 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.serhii.myproject.model.Role.PRESIDENT;
+import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -80,4 +86,62 @@ public class UserControllerTest {
         User expectedUser = UserTransformer.convertToEntity(userDto);
         verify(userService).create(expectedUser);
     }
+
+    @Test
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
+    public void testReadUser() throws Exception {
+        long id = 1L;
+        UserDto userDto = new UserDto();
+        userDto.setId(id);
+        userDto.setEmail("test@example.com");
+        when(userService.readById(id)).thenReturn(UserTransformer.convertToEntity(userDto));
+
+        mockMvc.perform(get("/users/{id}/read", id))
+                .andExpect(status().isOk())
+                .andExpect(view().name("user-info"))
+                .andExpect(model().attribute("user", userDto));
+
+        verify(userService).readById(id);
+    }
+
+    @Test
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
+    public void testUpdateUserAuthorized() throws Exception {
+        long userId = 1L;
+        UserDto userDto = new UserDto();
+        userDto.setId(userId);
+        userDto.setEmail("test@example.com");
+        when(userService.readById(userId)).thenReturn(UserTransformer.convertToEntity(userDto));
+
+        mockMvc.perform(get("/users/{id}/update", userId))
+                .andExpect(status().isOk())
+                .andExpect(view().name("update-user"))
+                .andExpect(model().attributeExists("user"))
+                .andExpect(model().attribute("user", userDto));
+
+        verify(userService).readById(userId);
+    }
+
+    @Test
+    public void testUpdateUserNotAuthorized() throws Exception {
+        long userId = 1L;
+
+        mockMvc.perform(get("/users/{id}/update", userId))
+                .andExpect(status().isForbidden());
+
+        verifyZeroInteractions(userService);
+    }
+
+    @Test
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
+    public void testDeleteUserAuthorized() throws Exception {
+        long userId = 1L;
+
+        mockMvc.perform(get("/users/{id}/delete", userId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/managers-home"));
+
+        verify(userService).delete(userId);
+    }
+
 }
