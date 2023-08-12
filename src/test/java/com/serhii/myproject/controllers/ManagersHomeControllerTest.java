@@ -13,25 +13,31 @@ import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ManagersHomeController.class)
-@ContextConfiguration(classes = {ManagersHomeController.class})
+@ContextConfiguration(classes = {ManagersHomeController.class, SecurityConfig.class})
 public class ManagersHomeControllerTest {
 
     @Autowired
@@ -42,6 +48,8 @@ public class ManagersHomeControllerTest {
 
     @MockBean
     private HeaderComponent headerComponent;
+    @MockBean
+    private CustomUserDetails customUserDetails;
 
     @Test
     @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
@@ -69,4 +77,6 @@ public class ManagersHomeControllerTest {
                 .andExpect(redirectedUrl("http://localhost/custom-login"));
     }
 }
+
+
 
