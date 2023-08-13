@@ -3,6 +3,9 @@ package com.serhii.myproject.controllers;
 import com.serhii.myproject.component.HeaderComponent;
 import com.serhii.myproject.config.TestSecurityConfig;
 import com.serhii.myproject.controller.PlayerController;
+import com.serhii.myproject.dto.PlayerDto;
+import com.serhii.myproject.dto.PlayerTransformer;
+import com.serhii.myproject.model.Player;
 import com.serhii.myproject.service.PlayerService;
 import com.serhii.myproject.service.impl.CustomUserDetails;
 import org.junit.Test;
@@ -53,6 +56,29 @@ public class PlayerControllerTest {
         mockMvc.perform(get("/players/create"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
+    @Test
+    @WithMockUser(username = "test@example.com", authorities = "SPORT_DIRECTOR")
+    public void testCreatePlayer() throws Exception {
+        PlayerDto playerDto = new PlayerDto();
+        playerDto.setPlayerFirstName("Noah");
+        playerDto.setPlayerLastName("Okafor");
+        playerDto.setJerseyNumber(17L);
+        playerDto.setPosition("FORWARD");
+
+        mockMvc.perform(post("/players/create").with(csrf())
+                        .param("playerFirstName", "Noah")
+                        .param("playerLastName", "Okafor")
+                        .param("jerseyNumber", String.valueOf(17L))
+                        .param("position", "FORWARD"))
+
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/player-home"));
+
+        Player expectedPlayer = PlayerTransformer.convertToEntity(playerDto);
+
+
     }
 
 }
