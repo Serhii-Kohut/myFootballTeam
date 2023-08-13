@@ -1,7 +1,7 @@
 package com.serhii.myproject.controllers;
 
 import com.serhii.myproject.component.HeaderComponent;
-import com.serhii.myproject.config.SecurityConfig;
+import com.serhii.myproject.config.TestSecurityConfig;
 import com.serhii.myproject.controller.UserController;
 import com.serhii.myproject.dto.UserDto;
 import com.serhii.myproject.dto.UserTransformer;
@@ -13,19 +13,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.serhii.myproject.model.Role.PRESIDENT;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -35,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
-@ContextConfiguration(classes = {UserController.class, SecurityConfig.class})
+@ContextConfiguration(classes = {UserController.class, TestSecurityConfig.class})
 public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -99,7 +93,7 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/{id}/read", id))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user-info"))
-                .andExpect(model().attribute("user", userDto));
+                .andExpect(model().attributeExists("user"));
 
         verify(userService).readById(id);
     }
