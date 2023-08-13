@@ -122,8 +122,27 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/{id}/update", userId))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
 
-        verifyZeroInteractions(userService);
+    @Test
+    @WithMockUser(username = "test@example.com", roles = {"PRESIDENT"})
+    public void testUpdateUser() throws Exception {
+        UserDto userDto = new UserDto();
+        userDto.setEmail("test@example.com");
+        userDto.setFirstName("Test");
+        userDto.setLastName("User");
+
+
+        mockMvc.perform(post("/users/update")
+                        .with(csrf())
+                        .param("email", "test@example.com")
+                        .param("firstName", "Test")
+                        .param("lastName", "User"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/managers-home")
+                );
+
+        verify(userService).update(UserTransformer.convertToEntity(userDto));
     }
 
     @Test
@@ -136,6 +155,16 @@ public class UserControllerTest {
                 .andExpect(redirectedUrl("/managers-home"));
 
         verify(userService).delete(userId);
+    }
+
+    @Test
+    public void testDeleteUserNotAuthorized() throws Exception {
+        long userId = 1L;
+
+        mockMvc.perform(get("/users/{id}/delete", userId))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
+
     }
 
 }
