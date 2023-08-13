@@ -48,4 +48,11 @@ public class PlayerControllerTest {
                 .andExpect(model().attributeExists("player"));
     }
 
+    @Test
+    public void testShowCreatePlayerFormWhenNotAuthenticated() throws Exception {
+        mockMvc.perform(get("/players/create"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
 }
