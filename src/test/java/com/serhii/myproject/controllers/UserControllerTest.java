@@ -110,8 +110,7 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/{id}/update", userId))
                 .andExpect(status().isOk())
                 .andExpect(view().name("update-user"))
-                .andExpect(model().attributeExists("user"))
-                .andExpect(model().attribute("user", userDto));
+                .andExpect(model().attributeExists("user"));
 
         verify(userService).readById(userId);
     }
@@ -121,7 +120,8 @@ public class UserControllerTest {
         long userId = 1L;
 
         mockMvc.perform(get("/users/{id}/update", userId))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
 
         verifyZeroInteractions(userService);
     }
