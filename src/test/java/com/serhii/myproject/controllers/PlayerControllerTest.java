@@ -96,6 +96,15 @@ public class PlayerControllerTest {
     }
 
     @Test
+    public void testReadPlayerNotAuthenticated() throws Exception {
+        long playerId = 2L;
+
+        mockMvc.perform(get("/players/{id}/read", playerId))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
+    @Test
     @WithMockUser(username = "test@example.com", authorities = {"SPORT_DIRECTOR"})
     public void testUpdatePlayer() throws Exception {
         long id = 1L;
@@ -117,6 +126,15 @@ public class PlayerControllerTest {
 
         verify(playerService).update(PlayerTransformer.convertToEntity(playerDto));
 
+    }
+
+    @Test
+    public void testUpdatePlayerNotAuthenticated() throws Exception {
+        long playerId = 2L;
+
+        mockMvc.perform(get("/players/{id}/update", playerId))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
     }
 
 }
