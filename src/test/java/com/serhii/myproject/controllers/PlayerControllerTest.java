@@ -106,6 +106,25 @@ public class PlayerControllerTest {
 
     @Test
     @WithMockUser(username = "test@example.com", authorities = {"SPORT_DIRECTOR"})
+    public void testShowUpdateFormPlayerWhenAuthenticated() throws Exception {
+        long playerId = 5L;
+        PlayerDto playerDto = new PlayerDto();
+        playerDto.setId(playerId);
+        playerDto.setPlayerFirstName("Noah");
+        playerDto.setPlayerLastName("Okafor");
+        playerDto.setPosition("FORWARD");
+        when(playerService.readById(playerId)).thenReturn(PlayerTransformer.convertToEntity(playerDto));
+
+        mockMvc.perform(get("/players/{id}/update", playerId).principal(() -> "test@example.com"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("update-player"))
+                .andExpect(model().attributeExists("player"));
+        verify(playerService).readById(playerId);
+    }
+
+
+    @Test
+    @WithMockUser(username = "test@example.com", authorities = {"SPORT_DIRECTOR"})
     public void testUpdatePlayer() throws Exception {
         long id = 1L;
         PlayerDto playerDto = new PlayerDto();
