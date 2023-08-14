@@ -75,8 +75,6 @@ public class PlayerControllerTest {
 
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/player-home"));
-
-        Player expectedPlayer = PlayerTransformer.convertToEntity(playerDto);
     }
 
     @Test
@@ -95,6 +93,30 @@ public class PlayerControllerTest {
                 .andExpect(model().attributeExists("player"));
 
         verify(playerService).readById(id);
+    }
+
+    @Test
+    @WithMockUser(username = "test@example.com", authorities = {"SPORT_DIRECTOR"})
+    public void testUpdatePlayer() throws Exception {
+        long id = 1L;
+        PlayerDto playerDto = new PlayerDto();
+        playerDto.setId(id);
+        playerDto.setPlayerFirstName("Noah");
+        playerDto.setPlayerLastName("Okafor");
+        playerDto.setPosition("FORWARD");
+
+        when(playerService.readById(1L)).thenReturn(new Player());
+
+        mockMvc.perform(post("/players/update").with(csrf())
+                        .param("id", String.valueOf(1L))
+                        .param("playerFirstName", "Noah")
+                        .param("playerLastName", "Okafor")
+                        .param("position", "FORWARD"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("/player-home"));
+
+        verify(playerService).update(PlayerTransformer.convertToEntity(playerDto));
+
     }
 
 }
