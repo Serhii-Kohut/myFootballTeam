@@ -137,4 +137,26 @@ public class PlayerControllerTest {
                 .andExpect(redirectedUrl("http://localhost/custom-login"));
     }
 
+    @Test
+    @WithMockUser(username = "test@example.com", authorities = {"SPORT_DIRECTOR"})
+    public void testDeletePlayerAuthenticated() throws Exception {
+        long playerId = 5L;
+
+        mockMvc.perform(get("/players/{id}/delete", playerId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/player-home"));
+
+        verify(playerService).delete(playerId);
+    }
+
+    @Test
+    public void testDeletePlayerNotAuthenticated() throws Exception {
+        long playerId = 2L;
+
+        mockMvc.perform(get("/players/{id}/delete", playerId))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
+
 }
