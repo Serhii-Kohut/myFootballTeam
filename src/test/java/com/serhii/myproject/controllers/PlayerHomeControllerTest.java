@@ -72,4 +72,12 @@ public class PlayerHomeControllerTest {
 
     }
 
+
+    @Test
+    public void testPlayerHomePageWhenNotAuthenticated() throws Exception {
+        mockMvc.perform(get("/player-home"))
+                .andExpect(status().isFound())
+                .andExpect(redirectedUrl("http://localhost/custom-login"));
+    }
+
 }

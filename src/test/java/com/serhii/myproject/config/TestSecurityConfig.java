@@ -18,6 +18,7 @@ public class TestSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/{id}/delete").hasRole("PRESIDENT")
                 .antMatchers("/managers-home").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR", "COACH")
                 .antMatchers("/players/**").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR", "COACH")
+                .antMatchers("/player-home").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/custom-login")
