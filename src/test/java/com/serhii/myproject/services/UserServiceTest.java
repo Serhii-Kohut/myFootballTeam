@@ -58,4 +58,24 @@ public class UserServiceTest {
         assertEquals(Role.SPORT_DIRECTOR, userById.getRole());
 
     }
+
+    @Test
+    public void testUpdateUser() {
+        User user = new User();
+        user.setFirstName("John");
+        user.setLastName("Elkann");
+        user.setEmail("test@emample.com");
+        user.setPassword("51515Sdsd");
+        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
+
+        User createdUser = userService.create(user);
+        User updatedUser = userService.update(createdUser);
+
+        assertEquals(user.getId(), updatedUser.getId());
+        assertEquals(user.getFirstName(), updatedUser.getFirstName());
+        assertEquals(user.getEmail(), updatedUser.getEmail());
+        assertEquals(Role.SPORT_DIRECTOR, updatedUser.getRole());
+    }
+
+
 }
