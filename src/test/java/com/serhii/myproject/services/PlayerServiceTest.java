@@ -26,7 +26,6 @@ public class PlayerServiceTest {
     private PlayerService playerService;
 
     private Player player1;
-    private Player player2;
 
     @Before
     public void setUp() {
@@ -86,6 +85,20 @@ public class PlayerServiceTest {
         playerService.delete(player1.getId());
         playerList = playerService.getAllPlayers();
         assertFalse(playerList.contains(player1));
+    }
+
+    @Test
+    public void testGetAllPlayers(){
+        List<Player> playerList = playerService.getAllPlayers();
+
+        assertTrue(playerList.contains(player1));
+    }
+
+    @Test
+    public void testGetPlayersByPosition() {
+        List<Player> midfielsersList = playerService.getByPosition(PlayerPosition.MIDFIELDER);
+
+        assertTrue(midfielsersList.contains(player1));
     }
 
 }
