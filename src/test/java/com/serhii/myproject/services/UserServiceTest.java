@@ -98,5 +98,32 @@ public class UserServiceTest {
         assertFalse(users.contains(user));
     }
 
+    @Test
+    public void testGetAllUsers(){
+        User user1 = new User();
+        user1.setFirstName("John");
+        user1.setLastName("Elkann");
+        user1.setEmail("test@emample.com");
+        user1.setPassword("51515Sdsd");
+        user1.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
+
+        User user2 = new User();
+        user2.setFirstName("Tom");
+        user2.setLastName("Pinter");
+        user2.setEmail("test2@emample.com");
+        user2.setPassword("51515Sdsd");
+        user2.setRole(Role.valueOf(Role.COACH.name()));
+
+        userService.create(user1);
+        userService.create(user2);
+
+        List<User> users = userService.getAllUsers();
+
+        assertTrue(users.contains(user1));
+        assertTrue(users.contains(user2));
+
+
+    }
+
 
 }
