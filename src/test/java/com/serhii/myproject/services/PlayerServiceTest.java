@@ -64,4 +64,15 @@ public class PlayerServiceTest {
 
     }
 
+    @Test
+    public void testUpdatePlayer() {
+        Player createdPlayer = playerService.create(player1);
+        Player updatedPlayer = playerService.update(createdPlayer);
+
+        assertEquals(player1.getId(), updatedPlayer.getId());
+        assertEquals(PlayerPosition.MIDFIELDER, createdPlayer.getPosition());
+        assertEquals(player1.getPlayerFirstName(), updatedPlayer.getPlayerFirstName());
+
+    }
+
 }
