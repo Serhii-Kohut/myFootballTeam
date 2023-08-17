@@ -51,4 +51,17 @@ public class PlayerServiceTest {
         assertEquals(PlayerPosition.MIDFIELDER, createdPlayer.getPosition());
     }
 
+    @Test
+    public void testReadPlayer() {
+        Player createdPlayer = playerService.create(player1);
+
+        Player playerById = playerService.readById(createdPlayer.getId());
+        assertNotNull(playerById.getId());
+
+        assertEquals("Cris", createdPlayer.getPlayerFirstName());
+        assertEquals(Optional.of(25000000L), Optional.ofNullable(createdPlayer.getMarketValue()));
+        assertEquals(PlayerPosition.MIDFIELDER, createdPlayer.getPosition());
+
+    }
+
 }
