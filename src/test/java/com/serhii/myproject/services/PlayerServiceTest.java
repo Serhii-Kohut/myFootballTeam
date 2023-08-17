@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
@@ -73,6 +74,18 @@ public class PlayerServiceTest {
         assertEquals(PlayerPosition.MIDFIELDER, createdPlayer.getPosition());
         assertEquals(player1.getPlayerFirstName(), updatedPlayer.getPlayerFirstName());
 
+    }
+
+    @Test
+    public void testDeletePlayer() {
+        playerService.create(player1);
+        List<Player> playerList = playerService.getAllPlayers();
+
+        assertTrue(playerList.contains(player1));
+
+        playerService.delete(player1.getId());
+        playerList = playerService.getAllPlayers();
+        assertFalse(playerList.contains(player1));
     }
 
 }
