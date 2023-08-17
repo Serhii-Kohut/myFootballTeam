@@ -3,6 +3,7 @@ package com.serhii.myproject.services;
 import com.serhii.myproject.model.Role;
 import com.serhii.myproject.model.User;
 import com.serhii.myproject.service.UserService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,32 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    private User user1;
+    private User user2;
+
+    @Before
+    public void setUp() {
+        user1 = new User();
+        user1.setFirstName("John");
+        user1.setLastName("Elkann");
+        user1.setEmail("test@emample.com");
+        user1.setPassword("51515Sdsd");
+        user1.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
+
+        user2 = new User();
+        user2.setFirstName("Tom");
+        user2.setLastName("Pinter");
+        user2.setEmail("test2@emample.com");
+        user2.setPassword("51515Sdsd");
+        user2.setRole(Role.valueOf(Role.COACH.name()));
+
+        userService.create(user1);
+        userService.create(user2);
+    }
+
     @Test
     public void testCreateUser() {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Elkann");
-        user.setEmail("test@emample.com");
-        user.setPassword("51515Sdsd");
-        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
-
-        User createdUser = userService.create(user);
+        User createdUser = userService.create(user1);
 
         assertNotNull(createdUser.getId());
         assertEquals("John", createdUser.getFirstName());
@@ -43,14 +60,7 @@ public class UserServiceTest {
 
     @Test
     public void testReadUser() {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Elkann");
-        user.setEmail("test@emample.com");
-        user.setPassword("51515Sdsd");
-        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
-
-        User createdUser = userService.create(user);
+        User createdUser = userService.create(user1);
 
         User userById = userService.readById(createdUser.getId());
 
@@ -63,67 +73,34 @@ public class UserServiceTest {
 
     @Test
     public void testUpdateUser() {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Elkann");
-        user.setEmail("test@emample.com");
-        user.setPassword("51515Sdsd");
-        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
-
-        User createdUser = userService.create(user);
+        User createdUser = userService.create(user1);
         User updatedUser = userService.update(createdUser);
 
-        assertEquals(user.getId(), updatedUser.getId());
-        assertEquals(user.getFirstName(), updatedUser.getFirstName());
-        assertEquals(user.getEmail(), updatedUser.getEmail());
+        assertEquals(user1.getId(), updatedUser.getId());
+        assertEquals(user1.getFirstName(), updatedUser.getFirstName());
+        assertEquals(user1.getEmail(), updatedUser.getEmail());
         assertEquals(Role.SPORT_DIRECTOR, updatedUser.getRole());
     }
 
     @Test
     public void testDeleteUser() {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Elkann");
-        user.setEmail("test@emample.com");
-        user.setPassword("51515Sdsd");
-        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
-
-        userService.create(user);
+        userService.create(user1);
         List<User> users = userService.getAllUsers();
-        assertTrue(users.contains(user));
+        assertTrue(users.contains(user1));
 
-        userService.delete(user.getId());
+        userService.delete(user1.getId());
 
         users = userService.getAllUsers();
-        assertFalse(users.contains(user));
+        assertFalse(users.contains(user1));
     }
 
     @Test
-    public void testGetAllUsers(){
-        User user1 = new User();
-        user1.setFirstName("John");
-        user1.setLastName("Elkann");
-        user1.setEmail("test@emample.com");
-        user1.setPassword("51515Sdsd");
-        user1.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
-
-        User user2 = new User();
-        user2.setFirstName("Tom");
-        user2.setLastName("Pinter");
-        user2.setEmail("test2@emample.com");
-        user2.setPassword("51515Sdsd");
-        user2.setRole(Role.valueOf(Role.COACH.name()));
-
-        userService.create(user1);
-        userService.create(user2);
-
+    public void testGetAllUsers() {
         List<User> users = userService.getAllUsers();
 
         assertTrue(users.contains(user1));
         assertTrue(users.contains(user2));
 
-
     }
-
 
 }
