@@ -11,8 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
@@ -75,6 +77,25 @@ public class UserServiceTest {
         assertEquals(user.getFirstName(), updatedUser.getFirstName());
         assertEquals(user.getEmail(), updatedUser.getEmail());
         assertEquals(Role.SPORT_DIRECTOR, updatedUser.getRole());
+    }
+
+    @Test
+    public void testDeleteUser() {
+        User user = new User();
+        user.setFirstName("John");
+        user.setLastName("Elkann");
+        user.setEmail("test@emample.com");
+        user.setPassword("51515Sdsd");
+        user.setRole(Role.valueOf(Role.SPORT_DIRECTOR.name()));
+
+        userService.create(user);
+        List<User> users = userService.getAllUsers();
+        assertTrue(users.contains(user));
+
+        userService.delete(user.getId());
+
+        users = userService.getAllUsers();
+        assertFalse(users.contains(user));
     }
 
 
