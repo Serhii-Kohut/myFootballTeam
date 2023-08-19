@@ -2,12 +2,15 @@ package com.serhii.myproject.controller;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class FileUploadController {
@@ -18,13 +21,17 @@ public class FileUploadController {
     private String bucketName;
 
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam("file")MultipartFile file){
+    public String uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             ObjectMetadata objectMetadata = new ObjectMetadata();
-            objectMetadata.setContentDisposition("attachment; filename=\""+ file.getOriginalFilename()
-            + "\"");
-            s3client
+            objectMetadata.setContentDisposition("attachment; filename=\"" + file.getOriginalFilename()
+                    + "\"");
+            s3client.putObject(new PutObjectRequest(bucketName, file.getOriginalFilename(),
+                    file.getInputStream(), objectMetadata));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return "redirect:/success";
     }
 
 }
