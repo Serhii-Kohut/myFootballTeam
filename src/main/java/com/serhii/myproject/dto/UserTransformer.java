@@ -10,7 +10,8 @@ public class UserTransformer {
                 user.getLastName(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getRole()
+                user.getRole(),
+                user.getPhoto()
         );
     }
 
@@ -22,6 +23,7 @@ public class UserTransformer {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setRole(userDto.getRole());
+        user.setPhoto(userDto.getPhoto());
         return user;
     }
 

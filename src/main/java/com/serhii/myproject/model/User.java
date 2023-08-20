@@ -39,6 +39,9 @@ public class User {
     @Column(columnDefinition = "VARCHAR")
     private Role role;
 
+    private String photo;
+
+
     public String getUsername() {
         return email;
     }

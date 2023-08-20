@@ -21,6 +21,9 @@ public class UserDto {
 
     private Role role;
 
+    private String photo;
+
+
     public UserDto() {
 
     }
