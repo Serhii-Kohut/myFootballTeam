@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/**").hasAuthority("PRESIDENT")
                 .antMatchers("/players/**").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR", "COACH")
                 .antMatchers("/managers-home").hasAnyAuthority("PRESIDENT", "SPORT_DIRECTOR", "COACH")
+                .antMatchers("/upload").hasAuthority("PRESIDENT")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
