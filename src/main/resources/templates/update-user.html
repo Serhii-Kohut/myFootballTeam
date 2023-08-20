@@ -9,7 +9,7 @@
 <div th:insert="blocks/header :: header"></div>
 <br>
 <h1 th:text="'Update info of ' + ${user.firstName} + ' ' + ${user.lastName}">Update Existing User</h1>
-<form th:action="@{/users/update}" method="post">
+<form th:action="@{/users/update}" method="post" enctype="multipart/form-data">
     <label class="bold" for="id">ID:</label>
     <input class="idText" type="text" id="id" name="id" th:value="${user.id}" readonly>
     <br>
@@ -38,6 +38,10 @@
     <select id="role" name="role" required>
         <option th:each="role : ${T(com.serhii.myproject.model.Role).values()}" th:value="${role.name()}" th:text="${role.getValue()}"></option>
     </select>
+    <br>
+
+    <label class="bold" for="file">Photo:</label>
+    <input type="file" id="file" name="file">
     <br>
 
     <input id="inputButton" type="submit" value="Update User">
