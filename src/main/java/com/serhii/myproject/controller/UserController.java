@@ -1,6 +1,12 @@
 package com.serhii.myproject.controller;
 
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.serhii.myproject.component.HeaderComponent;
+import com.serhii.myproject.config.AwsConfig;
 import com.serhii.myproject.dto.UserDto;
 import com.serhii.myproject.dto.UserTransformer;
 import com.serhii.myproject.model.User;
@@ -14,7 +20,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.URL;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -27,11 +36,15 @@ public class UserController {
     @Autowired
     private FileUploadController fileUploadController;
 
-    public UserController(UserService userService, HeaderComponent headerComponent) {
+    private final AwsConfig awsConfig;
+
+    public UserController(UserService userService, HeaderComponent headerComponent, AwsConfig awsConfig) {
         this.userService = userService;
         this.headerComponent = headerComponent;
+        this.awsConfig = awsConfig;
     }
 
+    @PreAuthorize("hasRole('PRESIDENT')")
     @GetMapping("/create")
     public String showCreateForm(Model model, Principal principal) {
         headerComponent.addUserToModel(model, principal);
@@ -61,12 +74,37 @@ public class UserController {
         headerComponent.addUserToModel(model, principal);
         User user = userService.readById(id);
         model.addAttribute("user", UserTransformer.convertToDto(user));
-        model.addAttribute("photoUrl", user.getPhoto());
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                .withRegion(Regions.EU_CENTRAL_1)
+                .build();
+
+
+        String bucketName = awsConfig.getBucketName();
+        ListObjectsV2Result result = s3Client.listObjectsV2(bucketName);
+        List<S3ObjectSummary> objects = result.getObjectSummaries();
+
+        List<String> objectKeys = new ArrayList<>();
+        for (S3ObjectSummary os : objects) {
+            objectKeys.add(os.getKey());
+        }
+
+        List<URL> photoUrls = new ArrayList<>();
+        for (String objectKey : objectKeys) {
+            URL photoUrl = awsConfig.generatePresignedUrl(bucketName, objectKey);
+            photoUrls.add(photoUrl);
+        }
+
+        model.addAttribute("photoUrls", photoUrls);
+
+        logger.info("Object keys: " + objectKeys);
+        logger.info("Pre-signed URLs: " + photoUrls);
 
         logger.info("User info page was showed");
 
         return "user-info";
     }
+
 
     @PreAuthorize("hasRole('PRESIDENT')")
     @GetMapping("/{id}/update")
